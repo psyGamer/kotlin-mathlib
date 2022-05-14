@@ -30,10 +30,14 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 	}
 	
 	operator fun div(other: Vector3f): Vector3f {
+		if (other.x == 0.0f || other.y == 0.0f || other.z == 0.0f)
+			throw ArithmeticException("Division by zero!")
 		return Vector3f(this.x / other.x, this.y / other.y, this.z / other.z)
 	}
 	
 	operator fun div(scalar: Float): Vector3f {
+		if (scalar == 0.0f)
+			throw ArithmeticException("Division by zero!")
 		return Vector3f((this.x / scalar), (this.y / scalar), (this.z / scalar))
 	}
 	
