@@ -5,6 +5,7 @@ import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
 import dev.psygamer.mathlib.clamp
+import dev.psygamer.mathlib.rotation.Quaternion
 
 object VectorUtil {
 	

@@ -1,8 +1,9 @@
-package dev.psygamer.mathlib.vector
+package dev.psygamer.mathlib.rotation
 
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
+import dev.psygamer.mathlib.vector.Vector3f
 
 class Quaternion {
 	

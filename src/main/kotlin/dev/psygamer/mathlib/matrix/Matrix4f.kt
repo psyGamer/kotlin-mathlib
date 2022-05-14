@@ -1,4 +1,6 @@
-package dev.psygamer.mathlib.vector
+package dev.psygamer.mathlib.matrix
+
+import dev.psygamer.mathlib.rotation.Quaternion
 
 class Matrix4f {
 	

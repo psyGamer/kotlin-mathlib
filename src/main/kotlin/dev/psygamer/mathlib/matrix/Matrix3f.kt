@@ -1,4 +1,4 @@
-package dev.psygamer.mathlib.vector
+package dev.psygamer.mathlib.matrix
 
 class Matrix3f {
 	
