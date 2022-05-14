@@ -1,5 +1,6 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id "com.adarshr.test-logger" version "3.2.0"
 }
 
 group = 'dev.psygamer'
@@ -23,4 +24,8 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = '1.8'
+}
+
+testlogger {
+    theme 'mocha'
 }
