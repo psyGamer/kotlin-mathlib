@@ -76,7 +76,7 @@ internal class Vector3fTest {
 	
 	@Test
 	fun distanceSquared() {
-		assertEquals(24.0f, Vector3f(3.0f, 2.0f, 1.0f).distance(Vector3f(1.0f, -2.0f, 3.0f)))
+		assertEquals(24.0f, Vector3f(3.0f, 2.0f, 1.0f).distanceSquared(Vector3f(1.0f, -2.0f, 3.0f)))
 	}
 	
 	@Test
