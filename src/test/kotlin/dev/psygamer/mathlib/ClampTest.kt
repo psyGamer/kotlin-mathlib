@@ -62,4 +62,18 @@ internal class ClampTest {
 		assertEquals(3.21283183821, 1.34391837822.clamp(min = 3.21283183821, max = 19.33838319321))
 		assertEquals(13.3739812378, 13.3739812378.clamp(min = 3.21283183821, max = 19.33838319321))
 	}
+	
+	@Test
+	fun floatNearIntClamp() {
+		assertEquals(2.0f, 1.99999f.clampToIntIfNear())
+		assertEquals(2.0f, 2.00001f.clampToIntIfNear())
+		assertEquals(1.9f, 1.9f.clampToIntIfNear())
+	}
+	
+	@Test
+	fun doubleNearIntClamp() {
+		assertEquals(2.0, 1.9999999999999.clampToIntIfNear())
+		assertEquals(2.0, 2.0000000000001.clampToIntIfNear())
+		assertEquals(1.99, 1.99.clampToIntIfNear())
+	}
 }

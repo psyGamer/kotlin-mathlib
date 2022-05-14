@@ -1,7 +1,6 @@
 package dev.psygamer.mathlib
 
-import kotlin.math.max
-import kotlin.math.min
+import kotlin.math.*
 
 fun Int.clamp(min: Int = 1, max: Int): Int {
 	return min(max, max(min, this))
@@ -25,4 +24,16 @@ fun Float.clamp(min: Float = 1.0f, max: Float): Float {
 
 fun Double.clamp(min: Double = 1.0, max: Double): Double {
 	return min(max, max(min, this))
+}
+
+fun Float.clampToIntIfNear(epsilon: Float = 0.001f): Float {
+	if (abs(this - this.roundToInt()) <= epsilon)
+		return this.roundToInt().toFloat()
+	return this
+}
+
+fun Double.clampToIntIfNear(epsilon: Double = 0.001): Double {
+	if (abs(this - this.roundToInt()) <= epsilon)
+		return this.roundToInt().toDouble()
+	return this
 }
