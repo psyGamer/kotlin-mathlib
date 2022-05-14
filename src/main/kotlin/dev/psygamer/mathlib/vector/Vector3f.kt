@@ -18,11 +18,11 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 	}
 	
 	operator fun minus(other: Vector3f): Vector3f {
-		return Vector3f(this.x - other.x, this.y - other.y, this.z + other.z)
+		return Vector3f(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
 	
 	operator fun times(other: Vector3f): Vector3f {
-		return Vector3f(this.x * other.x, this.y * other.y, this.z + other.z)
+		return Vector3f(this.x * other.x, this.y * other.y, this.z * other.z)
 	}
 	
 	operator fun times(scalar: Float): Vector3f {
