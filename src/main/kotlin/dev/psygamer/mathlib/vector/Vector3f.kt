@@ -71,4 +71,26 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 	
 	val inverted
 		get() = Vector3f(-this.x, -this.y, -this.z)
+	
+	override fun toString(): String {
+		return "Vector3f($x, $y, $z)"
+	}
+	
+	override fun equals(other: Any?): Boolean {
+		if (other == null)
+			return false
+		if (other !is Vector3f)
+			return false
+		if (this === other)
+			return true
+		
+		return this.x == other.x && this.y == other.y && this.z == other.z
+	}
+	
+	override fun hashCode(): Int {
+		var result = x.hashCode()
+		result = 31 * result + y.hashCode()
+		result = 31 * result + z.hashCode()
+		return result
+	}
 }
