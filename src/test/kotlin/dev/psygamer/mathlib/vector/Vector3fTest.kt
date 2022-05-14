@@ -56,7 +56,7 @@ internal class Vector3fTest {
 	
 	@Test
 	fun dot() {
-		assertEquals(122, Vector3f(9.0f, 2.0f, 7.0f) dot Vector3f(4.0f, 8.0f, 10.0f))
+		assertEquals(122.0f, Vector3f(9.0f, 2.0f, 7.0f) dot Vector3f(4.0f, 8.0f, 10.0f))
 	}
 	
 	@Test
@@ -81,21 +81,18 @@ internal class Vector3fTest {
 	
 	@Test
 	fun getNormalized() {
-		assertEquals(
-			Vector3f(0.25f, 0.5f, 1.0f),
-			Vector3f(1.0f, 2.0f, 4.0f).normalized
-		)
+		assertEquals(1.0f, Vector3f(1.0f, 2.0f, 4.0f).normalized.magnitude, 0.001f)
 	}
 	
 	@Test
 	fun getAngle() {
-		assertEquals(45.0f, Vector3f(1.0f, 1.0f, 0.0f).angle)
+		assertEquals(45.0f, Vector3f(1.0f, 1.0f, 0.0f).angle, 0.001f)
 	}
 	
 	@Test
 	fun angleBetween() {
-		assertEquals(45.0f, Vector3f(1.0f, 1.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)))
-		assertEquals(45.0f, Vector3f(1.0f, 0.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)))
+		assertEquals(45.0f, Vector3f(1.0f, 1.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
+		assertEquals(45.0f, Vector3f(1.0f, 0.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
 	}
 	
 	@Test
