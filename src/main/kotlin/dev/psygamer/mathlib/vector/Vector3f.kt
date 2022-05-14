@@ -42,7 +42,11 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 	}
 	
 	infix fun cross(other: Vector3f): Vector3f {
-		return Vector3f(this.x * other.y, this.y * other.x, this.z * other.z)
+		return Vector3f(
+			this.y * other.z - this.z * other.y,
+			this.z * other.x - this.x * other.z,
+			this.x * other.y - this.y * other.x
+		)
 	}
 	
 	infix fun dot(other: Vector3f): Float {
