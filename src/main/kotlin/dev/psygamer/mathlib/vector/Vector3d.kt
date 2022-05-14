@@ -59,11 +59,11 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 	val magnitudeSquared: Double
 		get() = (this.x * this.x + this.y * this.y + this.z * this.z)
 	
-	fun distance(other: Vector3d): Double {
+	infix fun distanceTo(other: Vector3d): Double {
 		return (this - other).magnitude
 	}
 	
-	fun distanceSquared(other: Vector3d): Double {
+	infix fun distanceToSquared(other: Vector3d): Double {
 		return (this - other).magnitudeSquared
 	}
 	

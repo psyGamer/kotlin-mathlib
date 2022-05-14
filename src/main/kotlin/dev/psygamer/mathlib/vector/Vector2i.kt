@@ -61,11 +61,11 @@ open class Vector2i(val x: Int, val y: Int) {
 	val magnitudeSquared: Int
 		get() = (this.x * this.x + this.y * this.y)
 	
-	fun distance(other: Vector2i): Float {
+	infix fun distanceTo(other: Vector2i): Float {
 		return (this - other).magnitude
 	}
 	
-	fun distanceSquared(other: Vector2i): Int {
+	infix fun distanceToSquared(other: Vector2i): Int {
 		return (this - other).magnitudeSquared
 	}
 	

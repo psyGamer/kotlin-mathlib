@@ -63,12 +63,12 @@ internal class Vector2fTest {
 	
 	@Test
 	fun distance() {
-		assertEquals(sqrt(20.0f), Vector2f(3.0f, 2.0f).distance(Vector2f(1.0f, -2.0f)))
+		assertEquals(sqrt(20.0f), Vector2f(3.0f, 2.0f) distanceTo Vector2f(1.0f, -2.0f))
 	}
 	
 	@Test
 	fun distanceSquared() {
-		assertEquals(20.0f, Vector2f(3.0f, 2.0f).distanceSquared(Vector2f(1.0f, -2.0f)))
+		assertEquals(20.0f, Vector2f(3.0f, 2.0f) distanceToSquared (Vector2f(1.0f, -2.0f)))
 	}
 	
 	@Test
