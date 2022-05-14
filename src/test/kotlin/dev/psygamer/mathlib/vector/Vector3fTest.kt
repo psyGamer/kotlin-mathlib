@@ -92,7 +92,7 @@ internal class Vector3fTest {
 	@Test
 	fun angleBetween() {
 		assertEquals(Math.toRadians(45.0).toFloat(), Vector3f(1.0f, 1.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
-		assertEquals(Math.toRadians(45.0).toFloat(), Vector3f(1.0f, 0.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
+		assertEquals(Math.toRadians(00.0).toFloat(), Vector3f(1.0f, 0.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
 	}
 	
 	@Test
