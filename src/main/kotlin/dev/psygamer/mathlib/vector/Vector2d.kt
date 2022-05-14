@@ -13,20 +13,64 @@ open class Vector2d(val x: Double, val y: Double) {
 		val ONE = Vector2d(1.0, 1.0)
 	}
 	
+	operator fun plus(other: Vector2i): Vector2d {
+		return Vector2d(this.x + other.x, this.y + other.y)
+	}
+	
+	operator fun plus(other: Vector2f): Vector2d {
+		return Vector2d(this.x + other.x, this.y + other.y)
+	}
+	
 	operator fun plus(other: Vector2d): Vector2d {
 		return Vector2d(this.x + other.x, this.y + other.y)
+	}
+	
+	operator fun minus(other: Vector2i): Vector2d {
+		return Vector2d(this.x - other.x, this.y - other.y)
+	}
+	
+	operator fun minus(other: Vector2f): Vector2d {
+		return Vector2d(this.x - other.x, this.y - other.y)
 	}
 	
 	operator fun minus(other: Vector2d): Vector2d {
 		return Vector2d(this.x - other.x, this.y - other.y)
 	}
 	
+	operator fun times(other: Vector2i): Vector2d {
+		return Vector2d(this.x * other.x, this.y * other.y)
+	}
+	
+	operator fun times(other: Vector2f): Vector2d {
+		return Vector2d(this.x * other.x, this.y * other.y)
+	}
+	
 	operator fun times(other: Vector2d): Vector2d {
 		return Vector2d(this.x * other.x, this.y * other.y)
 	}
 	
+	operator fun times(scalar: Int): Vector2d {
+		return Vector2d((this.x * scalar), (this.y * scalar))
+	}
+	
+	operator fun times(scalar: Float): Vector2d {
+		return Vector2d((this.x * scalar), (this.y * scalar))
+	}
+	
 	operator fun times(scalar: Double): Vector2d {
 		return Vector2d((this.x * scalar), (this.y * scalar))
+	}
+	
+	operator fun div(other: Vector2i): Vector2d {
+		if (other.x == 0 || other.y == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector2d(this.x / other.x, this.y / other.y)
+	}
+	
+	operator fun div(other: Vector2f): Vector2d {
+		if (other.x == 0.0f || other.y == 0.0f)
+			throw ArithmeticException("Division by zero!")
+		return Vector2d(this.x / other.x, this.y / other.y)
 	}
 	
 	operator fun div(other: Vector2d): Vector2d {
@@ -35,10 +79,30 @@ open class Vector2d(val x: Double, val y: Double) {
 		return Vector2d(this.x / other.x, this.y / other.y)
 	}
 	
+	operator fun div(scalar: Int): Vector2d {
+		if (scalar == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector2d((this.x / scalar), (this.y / scalar))
+	}
+	
+	operator fun div(scalar: Float): Vector2d {
+		if (scalar == 0.0f)
+			throw ArithmeticException("Division by zero!")
+		return Vector2d((this.x / scalar), (this.y / scalar))
+	}
+	
 	operator fun div(scalar: Double): Vector2d {
 		if (scalar == 0.0)
 			throw ArithmeticException("Division by zero!")
 		return Vector2d((this.x / scalar), (this.y / scalar))
+	}
+	
+	infix fun dot(other: Vector2i): Double {
+		return (this.x * other.x + this.y * other.y)
+	}
+	
+	infix fun dot(other: Vector2f): Double {
+		return (this.x * other.x + this.y * other.y)
 	}
 	
 	infix fun dot(other: Vector2d): Double {

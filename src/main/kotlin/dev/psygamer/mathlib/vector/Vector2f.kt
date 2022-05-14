@@ -13,34 +13,59 @@ open class Vector2f(val x: Float, val y: Float) {
 		val ONE = Vector2f(1.0f, 1.0f)
 	}
 	
+	operator fun plus(other: Vector2i): Vector2f {
+		return Vector2f(this.x + other.x, this.y + other.y)
+	}
 	operator fun plus(other: Vector2f): Vector2f {
 		return Vector2f(this.x + other.x, this.y + other.y)
 	}
 	
+	operator fun minus(other: Vector2i): Vector2f {
+		return Vector2f(this.x - other.x, this.y - other.y)
+	}
 	operator fun minus(other: Vector2f): Vector2f {
 		return Vector2f(this.x - other.x, this.y - other.y)
 	}
 	
+	operator fun times(other: Vector2i): Vector2f {
+		return Vector2f(this.x * other.x, this.y * other.y)
+	}
 	operator fun times(other: Vector2f): Vector2f {
 		return Vector2f(this.x * other.x, this.y * other.y)
 	}
 	
+	operator fun times(scalar: Int): Vector2f {
+		return Vector2f((this.x * scalar), (this.y * scalar))
+	}
 	operator fun times(scalar: Float): Vector2f {
 		return Vector2f((this.x * scalar), (this.y * scalar))
 	}
 	
+	operator fun div(other: Vector2i): Vector2f {
+		if (other.x == 0 || other.y == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector2f(this.x / other.x, y / other.y)
+	}
 	operator fun div(other: Vector2f): Vector2f {
 		if (other.x == 0.0f || other.y == 0.0f)
 			throw ArithmeticException("Division by zero!")
 		return Vector2f(this.x / other.x, y / other.y)
 	}
 	
+	operator fun div(scalar: Int): Vector2f {
+		if (scalar == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector2f((this.x / scalar), (this.y / scalar))
+	}
 	operator fun div(scalar: Float): Vector2f {
 		if (scalar == 0.0f)
 			throw ArithmeticException("Division by zero!")
 		return Vector2f((this.x / scalar), (this.y / scalar))
 	}
 	
+	infix fun dot(other: Vector2i): Float {
+		return (this.x * other.x + this.y * other.y)
+	}
 	infix fun dot(other: Vector2f): Float {
 		return (this.x * other.x + this.y * other.y)
 	}
@@ -51,10 +76,16 @@ open class Vector2f(val x: Float, val y: Float) {
 	val magnitudeSquared: Float
 		get() = this.x * this.x + this.y * this.y
 	
+	infix fun distanceTo(other: Vector2i): Float {
+		return (this - other).magnitude
+	}
 	infix fun distanceTo(other: Vector2f): Float {
 		return (this - other).magnitude
 	}
 	
+	infix fun distanceToSquared(other: Vector2i): Float {
+		return (this - other).magnitudeSquared
+	}
 	infix fun distanceToSquared(other: Vector2f): Float {
 		return (this - other).magnitudeSquared
 	}

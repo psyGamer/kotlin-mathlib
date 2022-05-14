@@ -13,20 +13,64 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 		val ONE = Vector3d(1.0, 1.0, 1.0)
 	}
 	
+	operator fun plus(other: Vector3i): Vector3d {
+		return Vector3d(this.x + other.x, this.y + other.y, this.z + other.z)
+	}
+	
+	operator fun plus(other: Vector3f): Vector3d {
+		return Vector3d(this.x + other.x, this.y + other.y, this.z + other.z)
+	}
+	
 	operator fun plus(other: Vector3d): Vector3d {
 		return Vector3d(this.x + other.x, this.y + other.y, this.z + other.z)
+	}
+	
+	operator fun minus(other: Vector3i): Vector3d {
+		return Vector3d(this.x - other.x, this.y - other.y, this.z - other.z)
+	}
+	
+	operator fun minus(other: Vector3f): Vector3d {
+		return Vector3d(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
 	
 	operator fun minus(other: Vector3d): Vector3d {
 		return Vector3d(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
 	
+	operator fun times(other: Vector3i): Vector3d {
+		return Vector3d(this.x * other.x, this.y * other.y, this.z * other.z)
+	}
+	
+	operator fun times(other: Vector3f): Vector3d {
+		return Vector3d(this.x * other.x, this.y * other.y, this.z * other.z)
+	}
+	
 	operator fun times(other: Vector3d): Vector3d {
 		return Vector3d(this.x * other.x, this.y * other.y, this.z * other.z)
 	}
 	
+	operator fun times(scalar: Int): Vector3d {
+		return Vector3d((this.x * scalar), (this.y * scalar), (this.z * scalar))
+	}
+	
+	operator fun times(scalar: Float): Vector3d {
+		return Vector3d((this.x * scalar), (this.y * scalar), (this.z * scalar))
+	}
+	
 	operator fun times(scalar: Double): Vector3d {
 		return Vector3d((this.x * scalar), (this.y * scalar), (this.z * scalar))
+	}
+	
+	operator fun div(other: Vector3i): Vector3d {
+		if (other.x == 0 || other.y == 0 || other.z == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector3d(this.x / other.x, this.y / other.y, this.z / other.z)
+	}
+	
+	operator fun div(other: Vector3f): Vector3d {
+		if (other.x == 0.0f || other.y == 0.0f || other.z == 0.0f)
+			throw ArithmeticException("Division by zero!")
+		return Vector3d(this.x / other.x, this.y / other.y, this.z / other.z)
 	}
 	
 	operator fun div(other: Vector3d): Vector3d {
@@ -35,10 +79,38 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 		return Vector3d(this.x / other.x, this.y / other.y, this.z / other.z)
 	}
 	
+	operator fun div(scalar: Int): Vector3d {
+		if (scalar == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector3d((this.x / scalar), (this.y / scalar), (this.z / scalar))
+	}
+	
+	operator fun div(scalar: Float): Vector3d {
+		if (scalar == 0.0f)
+			throw ArithmeticException("Division by zero!")
+		return Vector3d((this.x / scalar), (this.y / scalar), (this.z / scalar))
+	}
+	
 	operator fun div(scalar: Double): Vector3d {
 		if (scalar == 0.0)
 			throw ArithmeticException("Division by zero!")
 		return Vector3d((this.x / scalar), (this.y / scalar), (this.z / scalar))
+	}
+	
+	infix fun cross(other: Vector3i): Vector3d {
+		return Vector3d(
+			this.y * other.z - this.z * other.y,
+			this.z * other.x - this.x * other.z,
+			this.x * other.y - this.y * other.x
+		)
+	}
+	
+	infix fun cross(other: Vector3f): Vector3d {
+		return Vector3d(
+			this.y * other.z - this.z * other.y,
+			this.z * other.x - this.x * other.z,
+			this.x * other.y - this.y * other.x
+		)
 	}
 	
 	infix fun cross(other: Vector3d): Vector3d {
@@ -47,6 +119,14 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 			this.z * other.x - this.x * other.z,
 			this.x * other.y - this.y * other.x
 		)
+	}
+	
+	infix fun dot(other: Vector3i): Double {
+		return (this.x * other.x + this.y * other.y + this.z * other.z)
+	}
+	
+	infix fun dot(other: Vector3f): Double {
+		return (this.x * other.x + this.y * other.y + this.z * other.z)
 	}
 	
 	infix fun dot(other: Vector3d): Double {
@@ -59,8 +139,24 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 	val magnitudeSquared: Double
 		get() = (this.x * this.x + this.y * this.y + this.z * this.z)
 	
+	infix fun distanceTo(other: Vector3i): Double {
+		return (this - other).magnitude
+	}
+	
+	infix fun distanceTo(other: Vector3f): Double {
+		return (this - other).magnitude
+	}
+	
 	infix fun distanceTo(other: Vector3d): Double {
 		return (this - other).magnitude
+	}
+	
+	infix fun distanceToSquared(other: Vector3i): Double {
+		return (this - other).magnitudeSquared
+	}
+	
+	infix fun distanceToSquared(other: Vector3f): Double {
+		return (this - other).magnitudeSquared
 	}
 	
 	infix fun distanceToSquared(other: Vector3d): Double {

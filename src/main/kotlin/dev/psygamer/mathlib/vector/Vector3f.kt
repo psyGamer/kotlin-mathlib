@@ -13,34 +13,63 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 		val ONE = Vector3f(1.0f, 1.0f, 1.0f)
 	}
 	
+	operator fun plus(other: Vector3i): Vector3f {
+		return Vector3f(this.x + other.x, this.y + other.y, this.z + other.z)
+	}
 	operator fun plus(other: Vector3f): Vector3f {
 		return Vector3f(this.x + other.x, this.y + other.y, this.z + other.z)
 	}
 	
+	operator fun minus(other: Vector3i): Vector3f {
+		return Vector3f(this.x - other.x, this.y - other.y, this.z - other.z)
+	}
 	operator fun minus(other: Vector3f): Vector3f {
 		return Vector3f(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
 	
+	operator fun times(other: Vector3i): Vector3f {
+		return Vector3f(this.x * other.x, this.y * other.y, this.z * other.z)
+	}
 	operator fun times(other: Vector3f): Vector3f {
 		return Vector3f(this.x * other.x, this.y * other.y, this.z * other.z)
 	}
 	
+	operator fun times(scalar: Int): Vector3f {
+		return Vector3f((this.x * scalar), (this.y * scalar), (this.z * scalar))
+	}
 	operator fun times(scalar: Float): Vector3f {
 		return Vector3f((this.x * scalar), (this.y * scalar), (this.z * scalar))
 	}
 	
+	operator fun div(other: Vector3i): Vector3f {
+		if (other.x == 0 || other.y == 0 || other.z == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector3f(this.x / other.x, this.y / other.y, this.z / other.z)
+	}
 	operator fun div(other: Vector3f): Vector3f {
 		if (other.x == 0.0f || other.y == 0.0f || other.z == 0.0f)
 			throw ArithmeticException("Division by zero!")
 		return Vector3f(this.x / other.x, this.y / other.y, this.z / other.z)
 	}
 	
+	operator fun div(scalar: Int): Vector3f {
+		if (scalar == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector3f((this.x / scalar), (this.y / scalar), (this.z / scalar))
+	}
 	operator fun div(scalar: Float): Vector3f {
 		if (scalar == 0.0f)
 			throw ArithmeticException("Division by zero!")
 		return Vector3f((this.x / scalar), (this.y / scalar), (this.z / scalar))
 	}
 	
+	infix fun cross(other: Vector3i): Vector3f {
+		return Vector3f(
+			this.y * other.z - this.z * other.y,
+			this.z * other.x - this.x * other.z,
+			this.x * other.y - this.y * other.x
+		)
+	}
 	infix fun cross(other: Vector3f): Vector3f {
 		return Vector3f(
 			this.y * other.z - this.z * other.y,
@@ -49,6 +78,9 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 		)
 	}
 	
+	infix fun dot(other: Vector3i): Float {
+		return (this.x * other.x + this.y * other.y + this.z * other.z)
+	}
 	infix fun dot(other: Vector3f): Float {
 		return (this.x * other.x + this.y * other.y + this.z * other.z)
 	}
@@ -59,10 +91,16 @@ open class Vector3f(val x: Float, val y: Float, val z: Float) {
 	val magnitudeSquared: Float
 		get() = (this.x * this.x + this.y * this.y + this.z * this.z)
 	
+	infix fun distanceTo(other: Vector3i): Float {
+		return (this - other).magnitude
+	}
 	infix fun distanceTo(other: Vector3f): Float {
 		return (this - other).magnitude
 	}
 	
+	infix fun distanceToSquared(other: Vector3i): Float {
+		return (this - other).magnitudeSquared
+	}
 	infix fun distanceToSquared(other: Vector3f): Float {
 		return (this - other).magnitudeSquared
 	}

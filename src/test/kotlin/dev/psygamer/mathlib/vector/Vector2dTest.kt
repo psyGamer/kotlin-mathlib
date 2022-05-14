@@ -10,9 +10,18 @@ internal class Vector2dTest {
 	fun plus() {
 		assertEquals(Vector2d.ONE + Vector2d.ZERO, Vector2d.ONE)
 		assertEquals(Vector2d.ONE + Vector2d.ONE, Vector2d(2.0, 2.0))
+		
 		assertEquals(
 			Vector2d(1.0 + 3.23, 2.5 + 9.31),
 			Vector2d(1.0, 2.5) + Vector2d(3.23, 9.31)
+		)
+		assertEquals(
+			Vector2d(3.23 + 1.0, 9.31 + 2.5),
+			Vector2d(3.23, 9.31) + Vector2f(1.0f, 2.5f)
+		)
+		assertEquals(
+			Vector2d(3.23 + 1, 9.31 + 2),
+			Vector2d(3.23, 9.31) + Vector2i(1, 2)
 		)
 	}
 	
@@ -20,9 +29,18 @@ internal class Vector2dTest {
 	fun minus() {
 		assertEquals(Vector2d.ONE - Vector2d.ZERO, Vector2d.ONE)
 		assertEquals(Vector2d.ONE - Vector2d.ONE, Vector2d.ZERO)
+		
 		assertEquals(
 			Vector2d(3.23 - 1.0, 9.31 - 2.5),
 			Vector2d(3.23, 9.31) - Vector2d(1.0, 2.5)
+		)
+		assertEquals(
+			Vector2d(3.23 - 1.0, 9.31 - 2.5),
+			Vector2d(3.23, 9.31) - Vector2f(1.0f, 2.5f)
+		)
+		assertEquals(
+			Vector2d(3.23 - 1, 9.31 - 2),
+			Vector2d(3.23, 9.31) - Vector2i(1, 2)
 		)
 	}
 	
@@ -30,25 +48,47 @@ internal class Vector2dTest {
 	fun times() {
 		assertEquals(Vector2d.ONE * Vector2d.ZERO, Vector2d.ZERO)
 		assertEquals(Vector2d.ONE * Vector2d.ONE, Vector2d.ONE)
+		
 		assertEquals(
 			Vector2d(3.23 * 1.0, 9.31 * 2.5),
 			Vector2d(3.23, 9.31) * Vector2d(1.0, 2.5)
+		)
+		assertEquals(
+			Vector2d(3.23 * 1.0, 9.31 * 2.5),
+			Vector2d(3.23, 9.31) * Vector2f(1.0f, 2.5f)
+		)
+		assertEquals(
+			Vector2d(3.23 * 1, 9.31 * 2),
+			Vector2d(3.23, 9.31) * Vector2i(1, 2)
 		)
 	}
 	
 	@Test
 	fun div() {
 		assertThrows(ArithmeticException::class.java) { Vector2d.ONE / Vector2d.ZERO }
+		assertThrows(ArithmeticException::class.java) { Vector2d.ONE / Vector2f.ZERO }
+		assertThrows(ArithmeticException::class.java) { Vector2d.ONE / Vector2i.ZERO }
 		assertEquals(Vector2d.ONE / Vector2d.ONE, Vector2d.ONE)
+		
 		assertEquals(
 			Vector2d(3.23 / 1.0, 9.31 / 2.5),
 			Vector2d(3.23, 9.31) / Vector2d(1.0, 2.5)
+		)
+		assertEquals(
+			Vector2d(3.23 / 1.0, 9.31 / 2.5),
+			Vector2d(3.23, 9.31) / Vector2f(1.0f, 2.5f)
+		)
+		assertEquals(
+			Vector2d(3.23 / 1, 9.31 / 2),
+			Vector2d(3.23, 9.31) / Vector2i(1, 2)
 		)
 	}
 	
 	@Test
 	fun dot() {
 		assertEquals(52.0, Vector2d(9.0, 2.0) dot Vector2d(4.0, 8.0))
+		assertEquals(52.0, Vector2d(9.0, 2.0) dot Vector2f(4.0f, 8.0f))
+		assertEquals(52.0, Vector2d(9.0, 2.0) dot Vector2i(4, 8))
 	}
 	
 	@Test
