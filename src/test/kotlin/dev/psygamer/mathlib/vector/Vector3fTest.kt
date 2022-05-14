@@ -86,13 +86,13 @@ internal class Vector3fTest {
 	
 	@Test
 	fun getAngle() {
-		assertEquals(45.0f, Vector3f(1.0f, 1.0f, 0.0f).angle, 0.001f)
+		assertEquals(Math.toRadians(45.0).toFloat(), Vector3f(1.0f, 1.0f, 0.0f).angle, 0.001f)
 	}
 	
 	@Test
 	fun angleBetween() {
-		assertEquals(45.0f, Vector3f(1.0f, 1.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
-		assertEquals(45.0f, Vector3f(1.0f, 0.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
+		assertEquals(Math.toRadians(45.0).toFloat(), Vector3f(1.0f, 1.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
+		assertEquals(Math.toRadians(45.0).toFloat(), Vector3f(1.0f, 0.0f, 0.0f).angleBetween(Vector3f(1.0f, 0.0f, 0.0f)), 0.001f)
 	}
 	
 	@Test
