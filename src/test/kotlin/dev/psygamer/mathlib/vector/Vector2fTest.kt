@@ -47,16 +47,8 @@ internal class Vector2fTest {
 	}
 	
 	@Test
-	fun cross() {
-		assertEquals(
-			Vector2f(-3.0f, 6.0f),
-			Vector2f(2.0f, 3.0f) cross Vector2f(5.0f, 6.0f)
-		)
-	}
-	
-	@Test
 	fun dot() {
-		assertEquals(122.0f, Vector2f(9.0f, 2.0f) dot Vector2f(4.0f, 8.0f))
+		assertEquals(52.0f, Vector2f(9.0f, 2.0f) dot Vector2f(4.0f, 8.0f))
 	}
 	
 	@Test

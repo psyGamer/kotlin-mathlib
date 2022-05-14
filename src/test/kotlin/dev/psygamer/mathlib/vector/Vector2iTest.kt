@@ -47,16 +47,8 @@ internal class Vector2iTest {
 	}
 	
 	@Test
-	fun cross() {
-		assertEquals(
-			Vector2i(-3, 6),
-			Vector2i(2, 3) cross Vector2i(5, 6)
-		)
-	}
-	
-	@Test
 	fun dot() {
-		assertEquals(122, Vector2i(9, 2) dot Vector2i(4, 8))
+		assertEquals(52, Vector2i(9, 2) dot Vector2i(4, 8))
 	}
 	
 	@Test

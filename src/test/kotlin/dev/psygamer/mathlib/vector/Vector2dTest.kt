@@ -47,16 +47,8 @@ internal class Vector2dTest {
 	}
 	
 	@Test
-	fun cross() {
-		assertEquals(
-			Vector2d(-3.0, 6.0),
-			Vector2d(2.0, 3.0) cross Vector2d(5.0, 6.0)
-		)
-	}
-	
-	@Test
 	fun dot() {
-		assertEquals(122.0, Vector2d(9.0, 2.0) dot Vector2d(4.0, 8.0))
+		assertEquals(52.0, Vector2d(9.0, 2.0) dot Vector2d(4.0, 8.0))
 	}
 	
 	@Test

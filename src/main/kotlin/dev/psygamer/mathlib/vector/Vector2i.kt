@@ -34,19 +34,21 @@ open class Vector2i(val x: Int, val y: Int) {
 	}
 	
 	operator fun div(other: Vector2i): Vector2i {
+		if (other.x == 0 || other.y == 0)
+			throw ArithmeticException("Division by zero!")
 		return Vector2i(this.x / other.x, this.y / other.y)
 	}
 	
 	operator fun div(scalar: Int): Vector2i {
-		return Vector2i((this.x / scalar), (this.y / scalar))
+		if (scalar == 0)
+			throw ArithmeticException("Division by zero!")
+		return Vector2i(this.x / scalar, this.y / scalar)
 	}
 	
-	operator fun div(scalar: Float): Vector2i {
-		return Vector2i((this.x / scalar).toInt(), (this.y / scalar).toInt())
-	}
-	
-	infix fun cross(other: Vector2i): Vector2i {
-		return Vector2i(this.x * other.y, this.y * other.x)
+	operator fun div(scalar: Float): Vector2f {
+		if (scalar == 0.0f)
+			throw ArithmeticException("Division by zero!")
+		return Vector2f(this.x / scalar, this.y / scalar)
 	}
 	
 	infix fun dot(other: Vector2i): Int {
@@ -56,27 +58,49 @@ open class Vector2i(val x: Int, val y: Int) {
 	val magnitude: Float
 		get() = sqrt((this.x * this.x + this.y * this.y).toFloat())
 	
-	val magnitudeSquared: Float
-		get() = (this.x * this.x + this.y * this.y).toFloat()
+	val magnitudeSquared: Int
+		get() = (this.x * this.x + this.y * this.y)
 	
 	fun distance(other: Vector2i): Float {
 		return (this - other).magnitude
 	}
 	
-	fun distanceSquared(other: Vector2i): Float {
+	fun distanceSquared(other: Vector2i): Int {
 		return (this - other).magnitudeSquared
 	}
 	
-	val normalized: Vector2i
+	val normalized: Vector2f
 		get() = this / this.magnitude
 	
 	val angle: Float
 		get() = atan2(this.x.toFloat(), this.y.toFloat())
 	
 	fun angleBetween(other: Vector2i): Float {
-		return acos((this dot other / (this.magnitude * other.magnitude).toInt()).toFloat())
+		return acos((this dot other) / (this.magnitude * other.magnitude))
 	}
 	
 	val inverted
 		get() = Vector2i(-this.x, -this.y)
+	
+	override fun toString(): String {
+		return "Vector2i($x, $y)"
+	}
+	
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+		
+		other as Vector2i
+		
+		if (x != other.x) return false
+		if (y != other.y) return false
+		
+		return true
+	}
+	
+	override fun hashCode(): Int {
+		var result = x.hashCode()
+		result = 31 * result + y.hashCode()
+		return result
+	}
 }

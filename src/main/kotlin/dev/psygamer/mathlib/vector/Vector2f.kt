@@ -30,15 +30,15 @@ open class Vector2f(val x: Float, val y: Float) {
 	}
 	
 	operator fun div(other: Vector2f): Vector2f {
+		if (other.x == 0.0f || other.y == 0.0f)
+			throw ArithmeticException("Division by zero!")
 		return Vector2f(this.x / other.x, y / other.y)
 	}
 	
 	operator fun div(scalar: Float): Vector2f {
+		if (scalar == 0.0f)
+			throw ArithmeticException("Division by zero!")
 		return Vector2f((this.x / scalar), (this.y / scalar))
-	}
-	
-	infix fun cross(other: Vector2f): Vector2f {
-		return Vector2f(this.x * other.y, this.y * other.x)
 	}
 	
 	infix fun dot(other: Vector2f): Float {
@@ -71,4 +71,26 @@ open class Vector2f(val x: Float, val y: Float) {
 	
 	val inverted
 		get() = Vector2f(-this.x, -this.y)
+	
+	override fun toString(): String {
+		return "Vector2f($x, $y)"
+	}
+	
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+		
+		other as Vector2f
+		
+		if (x != other.x) return false
+		if (y != other.y) return false
+		
+		return true
+	}
+	
+	override fun hashCode(): Int {
+		var result = x.hashCode()
+		result = 31 * result + y.hashCode()
+		return result
+	}
 }
