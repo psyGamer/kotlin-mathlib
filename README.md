@@ -1,8 +1,9 @@
-# Kotlin Mathlib
+# Kotlin MathLib
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/psyGamer/kotlin-mathlib/JUnit%20Tests?style=for-the-badge)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/psyGamer/kotlin-mathlib?style=for-the-badge)
-![GitHub license](https://img.shields.io/github/license/psyGamer/kotlin-mathlib?style=for-the-badge)
+![Lines of code](https://img.shields.io/tokei/lines/github/psyGamer/kotlin-mathlib?style=for-the-badge)
+![Code license](https://img.shields.io/github/license/psyGamer/kotlin-mathlib?style=for-the-badge)
 
 ## Getting started
 
