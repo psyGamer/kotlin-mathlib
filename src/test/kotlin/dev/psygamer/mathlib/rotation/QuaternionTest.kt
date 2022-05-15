@@ -1,9 +1,20 @@
 package dev.psygamer.mathlib.rotation
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class QuaternionTest {
+	
+	@Test
+	fun alternativeAccessors() {
+		val q = Quaternion(1.0f, 2.0f, 1.25f, 0.2f)
+		assertEquals(q.r, q.w)
+		assertEquals(q.i, q.x)
+		assertEquals(q.j, q.y)
+		assertEquals(q.k, q.z)
+		
+		assertEquals(q.real, q.r)
+	}
 	
 	@Test
 	fun plus() {
@@ -61,38 +72,14 @@ internal class QuaternionTest {
 			Quaternion(2.0f, 3.5f, 1.2f, 4.2f).conjugate,
 			Quaternion(2.0f, 3.5f, 1.2f, 4.2f).inverted
 		)
-		
-		assertEquals(
-			1.0f,
-			(Quaternion(2.0f, 3.5f, 1.2f, 4.2f) * Quaternion(2.0f, 3.5f, 1.2f, 4.2f).conjugate).r,
-			0.001f
-		)
-		assertEquals(
-			0.0f,
-			(Quaternion(2.0f, 3.5f, 1.2f, 4.2f) * Quaternion(2.0f, 3.5f, 1.2f, 4.2f).conjugate).i,
-			0.001f
-		)
-		assertEquals(
-			0.0f,
-			(Quaternion(2.0f, 3.5f, 1.2f, 4.2f) * Quaternion(2.0f, 3.5f, 1.2f, 4.2f).conjugate).j,
-			0.001f
-		)
-		assertEquals(
-			0.0f,
-			(Quaternion(2.0f, 3.5f, 1.2f, 4.2f) * Quaternion(2.0f, 3.5f, 1.2f, 4.2f).conjugate).k,
-			0.001f
-		)
 	}
 	
 	@Test
-	fun normalize() {
-		assertEquals(
-			Quaternion(0.5f, 0.5f, 0.5f, 0.5f),
-			Quaternion(1.0f, 1.0f, 1.0f, 1.0f).normalized
-		)
-		assertEquals(
-			Quaternion(0.5f, 0.5f, 0.5f, 0.5f),
-			Quaternion(2.0f, 2.0f, 2.0f, 2.0f).normalized
-		)
+	fun qTimesConjEqualsOne() {
+		val q = (Quaternion(2.0f, 3.5f, 1.2f, 4.2f) * Quaternion(2.0f, 3.5f, 1.2f, 4.2f).conjugate).normalized
+		assertEquals(0.0f, q.x, 0.001f)
+		assertEquals(0.0f, q.y, 0.001f)
+		assertEquals(0.0f, q.z, 0.001f)
+		assertEquals(1.0f, q.w, 0.001f)
 	}
 }
