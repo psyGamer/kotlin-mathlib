@@ -55,12 +55,6 @@ open class Vector2i(val x: Int, val y: Int) {
 		return (this.x * other.x + this.y * other.y)
 	}
 	
-	val magnitude: Float
-		get() = sqrt((this.x * this.x + this.y * this.y).toFloat())
-	
-	val magnitudeSquared: Int
-		get() = (this.x * this.x + this.y * this.y)
-	
 	infix fun distanceTo(other: Vector2i): Float {
 		return (this - other).magnitude
 	}
@@ -69,15 +63,21 @@ open class Vector2i(val x: Int, val y: Int) {
 		return (this - other).magnitudeSquared
 	}
 	
+	fun angleBetween(other: Vector2i): Float {
+		return acos((this dot other) / (this.magnitude * other.magnitude))
+	}
+	
+	val magnitude: Float
+		get() = sqrt((this.x * this.x + this.y * this.y).toFloat())
+	
+	val magnitudeSquared: Int
+		get() = (this.x * this.x + this.y * this.y)
+	
 	val normalized: Vector2f
 		get() = this / this.magnitude
 	
 	val angle: Float
 		get() = atan2(this.x.toFloat(), this.y.toFloat())
-	
-	fun angleBetween(other: Vector2i): Float {
-		return acos((this dot other) / (this.magnitude * other.magnitude))
-	}
 	
 	val inverted
 		get() = Vector2i(-this.x, -this.y)

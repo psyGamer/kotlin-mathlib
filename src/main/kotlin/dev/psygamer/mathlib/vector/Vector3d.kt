@@ -133,12 +133,6 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 		return (this.x * other.x + this.y * other.y + this.z * other.z)
 	}
 	
-	val magnitude: Double
-		get() = sqrt(this.x * this.x + this.y * this.y + this.z * this.z)
-	
-	val magnitudeSquared: Double
-		get() = (this.x * this.x + this.y * this.y + this.z * this.z)
-	
 	infix fun distanceTo(other: Vector3i): Double {
 		return (this - other).magnitude
 	}
@@ -163,15 +157,21 @@ open class Vector3d(val x: Double, val y: Double, val z: Double) {
 		return (this - other).magnitudeSquared
 	}
 	
+	fun angleBetween(other: Vector3d): Double {
+		return acos(this dot other / (this.magnitude * other.magnitude))
+	}
+	
+	val magnitude: Double
+		get() = sqrt(this.x * this.x + this.y * this.y + this.z * this.z)
+	
+	val magnitudeSquared: Double
+		get() = (this.x * this.x + this.y * this.y + this.z * this.z)
+	
 	val normalized: Vector3d
 		get() = this / this.magnitude
 	
 	val angle: Double
 		get() = atan2(this.x, this.y)
-	
-	fun angleBetween(other: Vector3d): Double {
-		return acos(this dot other / (this.magnitude * other.magnitude))
-	}
 	
 	val inverted
 		get() = Vector3d(-this.x, -this.y, -this.z)

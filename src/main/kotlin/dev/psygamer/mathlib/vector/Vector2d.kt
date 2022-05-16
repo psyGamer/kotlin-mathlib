@@ -109,12 +109,6 @@ open class Vector2d(val x: Double, val y: Double) {
 		return (this.x * other.x + this.y * other.y)
 	}
 	
-	val magnitude: Double
-		get() = sqrt(this.x * this.x + this.y * this.y)
-	
-	val magnitudeSquared: Double
-		get() = (this.x * this.x + this.y * this.y)
-	
 	infix fun distanceTo(other: Vector2d): Double {
 		return (this - other).magnitude
 	}
@@ -123,18 +117,24 @@ open class Vector2d(val x: Double, val y: Double) {
 		return (this - other).magnitudeSquared
 	}
 	
-	val normalized: Vector2d
-		get() = this / this.magnitude
-	
-	val angle: Double
-		get() = atan2(this.x, this.y)
-	
 	fun angleBetween(other: Vector2d): Double {
 		return acos(this dot other / (this.magnitude * other.magnitude))
 	}
 	
+	val magnitude: Double
+		get() = sqrt(this.x * this.x + this.y * this.y)
+	
+	val magnitudeSquared: Double
+		get() = (this.x * this.x + this.y * this.y)
+	
+	val normalized: Vector2d
+		get() = this / this.magnitude
+	
 	val inverted
 		get() = Vector2d(-this.x, -this.y)
+	
+	val angle: Double
+		get() = atan2(this.x, this.y)
 	
 	override fun toString(): String {
 		return "Vector2d($x, $y)"
