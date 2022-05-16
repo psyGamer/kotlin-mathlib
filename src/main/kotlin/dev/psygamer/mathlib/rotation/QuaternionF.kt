@@ -3,7 +3,7 @@ package dev.psygamer.mathlib.rotation
 import kotlin.math.sqrt
 import dev.psygamer.mathlib.almostEquals
 
-class Quaternion {
+class QuaternionF {
 	
 	val x: Float
 	val y: Float
@@ -24,8 +24,8 @@ class Quaternion {
 		this.w = w
 	}
 	
-	operator fun plus(other: Quaternion): Quaternion {
-		return Quaternion(
+	operator fun plus(other: QuaternionF): QuaternionF {
+		return QuaternionF(
 			this.x + other.x,
 			this.y + other.y,
 			this.z + other.z,
@@ -33,8 +33,8 @@ class Quaternion {
 		)
 	}
 	
-	operator fun minus(other: Quaternion): Quaternion {
-		return Quaternion(
+	operator fun minus(other: QuaternionF): QuaternionF {
+		return QuaternionF(
 			this.x - other.x,
 			this.y - other.y,
 			this.z - other.z,
@@ -43,31 +43,31 @@ class Quaternion {
 	}
 	
 	/** See: [EuclideanSpace - Quaternion Multiplication](https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm#mul) */
-	operator fun times(other: Quaternion): Quaternion {
+	operator fun times(other: QuaternionF): QuaternionF {
 		val nx = +this.x * other.w + this.y * other.z - this.z * other.y + this.w * other.x
 		val ny = -this.x * other.z + this.y * other.w + this.z * other.x + this.w * other.y
 		val nz = +this.x * other.y - this.y * other.x + this.z * other.w + this.w * other.z
 		val nw = -this.x * other.x - this.y * other.y - this.z * other.z + this.w * other.w
 		
-		return Quaternion(nx, ny, nz, nw)
+		return QuaternionF(nx, ny, nz, nw)
 	}
 	
-	operator fun div(other: Quaternion): Quaternion {
+	operator fun div(other: QuaternionF): QuaternionF {
 		val nx = +this.x * +other.w + this.y * -other.z - this.z * -other.y + this.w * -other.x
 		val ny = -this.x * -other.z + this.y * +other.w + this.z * -other.x + this.w * -other.y
 		val nz = +this.x * -other.y - this.y * -other.x + this.z * +other.w + this.w * -other.z
 		val nw = -this.x * -other.x - this.y * -other.y - this.z * -other.z + this.w * +other.w
 		
-		return Quaternion(nx, ny, nz, nw)
+		return QuaternionF(nx, ny, nz, nw)
 	}
 	
-	val normalized: Quaternion
+	val normalized: QuaternionF
 		get() {
 			val magnitudeSquared = x * x + y * y + z * z + w * w
 			
 			return if (magnitudeSquared > 1.0E-4f) {
 				val magnitude = sqrt(magnitudeSquared)
-				Quaternion(
+				QuaternionF(
 					x / magnitude,
 					y / magnitude,
 					z / magnitude,
@@ -75,14 +75,14 @@ class Quaternion {
 				)
 			} else {
 				// Set to 0 if the values are basically 0
-				Quaternion(0.0f, 0.0f, 0.0f, 0.0f)
+				QuaternionF(0.0f, 0.0f, 0.0f, 0.0f)
 			}
 		}
 	
 	val conjugate
-		get() = Quaternion(-x, -y, -z, w)
+		get() = QuaternionF(-x, -y, -z, w)
 	val inverted
-		get() = Quaternion(-x, -y, -z, w)
+		get() = QuaternionF(-x, -y, -z, w)
 	
 	override fun toString(): String {
 		return "Quaternion(x=$x, y=$y, z=$z, w=$w)"
@@ -92,7 +92,7 @@ class Quaternion {
 		if (this === other) return true
 		if (javaClass != other?.javaClass) return false
 		
-		other as Quaternion
+		other as QuaternionF
 		
 		if (!x.almostEquals(other.x)) return false
 		if (!y.almostEquals(other.y)) return false

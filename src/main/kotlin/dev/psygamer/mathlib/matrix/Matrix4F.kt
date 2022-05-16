@@ -1,8 +1,8 @@
 package dev.psygamer.mathlib.matrix
 
-import dev.psygamer.mathlib.rotation.Quaternion
+import dev.psygamer.mathlib.rotation.QuaternionF
 
-class Matrix4f {
+class Matrix4F {
 	
 	private var m00: Float = 0.0f
 	private var m01: Float = 0.0f
@@ -26,7 +26,7 @@ class Matrix4f {
 	
 	constructor()
 	
-	constructor(other: Matrix4f) {
+	constructor(other: Matrix4F) {
 		this.m00 = other.m00
 		this.m01 = other.m01
 		this.m02 = other.m02
@@ -49,7 +49,7 @@ class Matrix4f {
 	}
 	
 	/** See: [EuclideanSpace - Conversion Quaternion to Matrix](https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm) */
-	constructor(quaternion: Quaternion) {
+	constructor(quaternion: QuaternionF) {
 		val xx = quaternion.x * quaternion.x
 		val xy = quaternion.x * quaternion.y
 		val xz = quaternion.x * quaternion.z

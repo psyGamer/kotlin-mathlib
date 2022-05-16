@@ -2,68 +2,68 @@ package dev.psygamer.mathlib.vector
 
 import kotlin.math.*
 
-open class Vector2i(val x: Int, val y: Int) {
+open class Vector2I(val x: Int, val y: Int) {
 	
 	companion object {
 		
 		@JvmStatic
-		val ZERO = Vector2i(0, 0)
+		val ZERO = Vector2I(0, 0)
 		
 		@JvmStatic
-		val ONE = Vector2i(1, 1)
+		val ONE = Vector2I(1, 1)
 	}
 	
-	operator fun plus(other: Vector2i): Vector2i {
-		return Vector2i(this.x + other.x, this.y + other.y)
+	operator fun plus(other: Vector2I): Vector2I {
+		return Vector2I(this.x + other.x, this.y + other.y)
 	}
 	
-	operator fun minus(other: Vector2i): Vector2i {
-		return Vector2i(this.x - other.x, this.y - other.y)
+	operator fun minus(other: Vector2I): Vector2I {
+		return Vector2I(this.x - other.x, this.y - other.y)
 	}
 	
-	operator fun times(scalar: Float): Vector2i {
-		return Vector2i((this.x * scalar).toInt(), (this.y * scalar).toInt())
+	operator fun times(scalar: Float): Vector2I {
+		return Vector2I((this.x * scalar).toInt(), (this.y * scalar).toInt())
 	}
 	
-	operator fun times(scalar: Int): Vector2i {
-		return Vector2i((this.x * scalar), (this.y * scalar))
+	operator fun times(scalar: Int): Vector2I {
+		return Vector2I((this.x * scalar), (this.y * scalar))
 	}
 	
-	operator fun times(other: Vector2i): Vector2i {
-		return Vector2i(this.x * other.x, this.y * other.y)
+	operator fun times(other: Vector2I): Vector2I {
+		return Vector2I(this.x * other.x, this.y * other.y)
 	}
 	
-	operator fun div(other: Vector2i): Vector2i {
+	operator fun div(other: Vector2I): Vector2I {
 		if (other.x == 0 || other.y == 0)
 			throw ArithmeticException("Division by zero!")
-		return Vector2i(this.x / other.x, this.y / other.y)
+		return Vector2I(this.x / other.x, this.y / other.y)
 	}
 	
-	operator fun div(scalar: Int): Vector2i {
+	operator fun div(scalar: Int): Vector2I {
 		if (scalar == 0)
 			throw ArithmeticException("Division by zero!")
-		return Vector2i(this.x / scalar, this.y / scalar)
+		return Vector2I(this.x / scalar, this.y / scalar)
 	}
 	
-	operator fun div(scalar: Float): Vector2f {
+	operator fun div(scalar: Float): Vector2F {
 		if (scalar == 0.0f)
 			throw ArithmeticException("Division by zero!")
-		return Vector2f(this.x / scalar, this.y / scalar)
+		return Vector2F(this.x / scalar, this.y / scalar)
 	}
 	
-	infix fun dot(other: Vector2i): Int {
+	infix fun dot(other: Vector2I): Int {
 		return (this.x * other.x + this.y * other.y)
 	}
 	
-	infix fun distanceTo(other: Vector2i): Float {
+	infix fun distanceTo(other: Vector2I): Float {
 		return (this - other).magnitude
 	}
 	
-	infix fun distanceToSquared(other: Vector2i): Int {
+	infix fun distanceToSquared(other: Vector2I): Int {
 		return (this - other).magnitudeSquared
 	}
 	
-	fun angleBetween(other: Vector2i): Float {
+	fun angleBetween(other: Vector2I): Float {
 		return acos((this dot other) / (this.magnitude * other.magnitude))
 	}
 	
@@ -73,14 +73,14 @@ open class Vector2i(val x: Int, val y: Int) {
 	val magnitudeSquared: Int
 		get() = (this.x * this.x + this.y * this.y)
 	
-	val normalized: Vector2f
+	val normalized: Vector2F
 		get() = this / this.magnitude
 	
 	val angle: Float
 		get() = atan2(this.x.toFloat(), this.y.toFloat())
 	
 	val inverted
-		get() = Vector2i(-this.x, -this.y)
+		get() = Vector2I(-this.x, -this.y)
 	
 	override fun toString(): String {
 		return "Vector2i($x, $y)"
@@ -90,7 +90,7 @@ open class Vector2i(val x: Int, val y: Int) {
 		if (this === other) return true
 		if (javaClass != other?.javaClass) return false
 		
-		other as Vector2i
+		other as Vector2I
 		
 		if (x != other.x) return false
 		if (y != other.y) return false

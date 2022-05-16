@@ -2,76 +2,76 @@ package dev.psygamer.mathlib.vector
 
 import kotlin.math.*
 
-open class Vector3i(val x: Int, val y: Int, val z: Int) {
+open class Vector3I(val x: Int, val y: Int, val z: Int) {
 	
 	companion object {
 		
 		@JvmStatic
-		val ZERO = Vector3i(0, 0, 0)
+		val ZERO = Vector3I(0, 0, 0)
 		
 		@JvmStatic
-		val ONE = Vector3i(1, 1, 1)
+		val ONE = Vector3I(1, 1, 1)
 	}
 	
-	operator fun plus(other: Vector3i): Vector3i {
-		return Vector3i(this.x + other.x, this.y + other.y, this.z + other.z)
+	operator fun plus(other: Vector3I): Vector3I {
+		return Vector3I(this.x + other.x, this.y + other.y, this.z + other.z)
 	}
 	
-	operator fun minus(other: Vector3i): Vector3i {
-		return Vector3i(this.x - other.x, this.y - other.y, this.z - other.z)
+	operator fun minus(other: Vector3I): Vector3I {
+		return Vector3I(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
 	
-	operator fun times(other: Vector3i): Vector3i {
-		return Vector3i(this.x * other.x, this.y * other.y, this.z * other.z)
+	operator fun times(other: Vector3I): Vector3I {
+		return Vector3I(this.x * other.x, this.y * other.y, this.z * other.z)
 	}
 	
-	operator fun times(scalar: Int): Vector3i {
-		return Vector3i((this.x * scalar), (this.y * scalar), (this.z * scalar))
+	operator fun times(scalar: Int): Vector3I {
+		return Vector3I((this.x * scalar), (this.y * scalar), (this.z * scalar))
 	}
 	
-	operator fun times(scalar: Float): Vector3f {
-		return Vector3f((this.x * scalar), (this.y * scalar), (this.z * scalar))
+	operator fun times(scalar: Float): Vector3F {
+		return Vector3F((this.x * scalar), (this.y * scalar), (this.z * scalar))
 	}
 	
-	operator fun div(other: Vector3i): Vector3i {
+	operator fun div(other: Vector3I): Vector3I {
 		if (other.x == 0 || other.y == 0 || other.z == 0)
 			throw ArithmeticException("Division by zero!")
-		return Vector3i(this.x / other.x, this.y / other.y, this.z / other.z)
+		return Vector3I(this.x / other.x, this.y / other.y, this.z / other.z)
 	}
 	
-	operator fun div(scalar: Int): Vector3i {
+	operator fun div(scalar: Int): Vector3I {
 		if (scalar == 0)
 			throw ArithmeticException("Division by zero!")
-		return Vector3i((this.x / scalar), (this.y / scalar), (this.z / scalar))
+		return Vector3I((this.x / scalar), (this.y / scalar), (this.z / scalar))
 	}
 	
-	operator fun div(scalar: Float): Vector3f {
+	operator fun div(scalar: Float): Vector3F {
 		if (scalar == 0.0f)
 			throw ArithmeticException("Division by zero!")
-		return Vector3f((this.x / scalar), (this.y / scalar), (this.z / scalar))
+		return Vector3F((this.x / scalar), (this.y / scalar), (this.z / scalar))
 	}
 	
-	infix fun cross(other: Vector3i): Vector3i {
-		return Vector3i(
+	infix fun cross(other: Vector3I): Vector3I {
+		return Vector3I(
 			this.y * other.z - this.z * other.y,
 			this.z * other.x - this.x * other.z,
 			this.x * other.y - this.y * other.x
 		)
 	}
 	
-	infix fun dot(other: Vector3i): Int {
+	infix fun dot(other: Vector3I): Int {
 		return (this.x * other.x + this.y * other.y + this.z * other.z)
 	}
 	
-	infix fun distanceTo(other: Vector3i): Float {
+	infix fun distanceTo(other: Vector3I): Float {
 		return (this - other).magnitude
 	}
 	
-	infix fun distanceToSquared(other: Vector3i): Int {
+	infix fun distanceToSquared(other: Vector3I): Int {
 		return (this - other).magnitudeSquared
 	}
 	
-	fun angleBetween(other: Vector3i): Float {
+	fun angleBetween(other: Vector3I): Float {
 		return acos((this dot other) / (this.magnitude * other.magnitude))
 	}
 	
@@ -81,14 +81,14 @@ open class Vector3i(val x: Int, val y: Int, val z: Int) {
 	val magnitudeSquared: Int
 		get() = (this.x * this.x + this.y * this.y + this.z * this.z)
 	
-	val normalized: Vector3f
+	val normalized: Vector3F
 		get() = this / this.magnitude
 	
 	val angle: Float
 		get() = atan2(this.x.toFloat(), this.y.toFloat())
 	
 	val inverted
-		get() = Vector3i(-this.x, -this.y, -this.z)
+		get() = Vector3I(-this.x, -this.y, -this.z)
 	
 	override fun toString(): String {
 		return "Vector3i($x, $y, $z)"
@@ -97,7 +97,7 @@ open class Vector3i(val x: Int, val y: Int, val z: Int) {
 	override fun equals(other: Any?): Boolean {
 		if (other == null)
 			return false
-		if (other !is Vector3i)
+		if (other !is Vector3I)
 			return false
 		if (this === other)
 			return true

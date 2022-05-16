@@ -1,6 +1,6 @@
 package dev.psygamer.mathlib.matrix
 
-class Matrix3f {
+class Matrix3F {
 	
 	private var m00: Float = 0.0f
 	private var m01: Float = 0.0f
