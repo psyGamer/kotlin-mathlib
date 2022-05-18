@@ -46,6 +46,18 @@ internal class QuaternionFTest {
 	}
 	
 	@Test
+	fun realQuatTimesRealQuatIsRealQuat() {
+		assertTrue(
+			(QuaternionF(1.0f, 0.0f, 0.0f, 0.0f) *
+			 QuaternionF(2.0f, 0.0f, 0.0f, 0.0f)).isReal
+		)
+		assertFalse(
+			(QuaternionF(1.0f, 0.0f, 0.0f, 0.0f) *
+			 QuaternionF(2.0f, 0.0f, 0.0f, 0.1f)).isReal
+		)
+	}
+	
+	@Test
 	fun div() {
 		assertEquals(
 			QuaternionF(

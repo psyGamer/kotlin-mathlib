@@ -2,6 +2,7 @@ package dev.psygamer.mathlib.rotation
 
 import kotlin.math.sqrt
 import dev.psygamer.mathlib.almostEquals
+import dev.psygamer.mathlib.vector.*
 
 class QuaternionF {
 	
@@ -22,6 +23,29 @@ class QuaternionF {
 		this.x = x
 		this.y = y
 		this.z = z
+	}
+	
+	constructor(w: Float, v: Vector3I) {
+		this.w = w
+		this.x = v.x.toFloat()
+		this.y = v.y.toFloat()
+		this.z = v.z.toFloat()
+	}
+	
+	constructor(w: Float, v: Vector3F) {
+		this.w = w
+		this.x = v.x
+		this.y = v.y
+		this.z = v.z
+	}
+	
+	constructor(real: QuaternionF, pure: QuaternionF) {
+		if (!real.isReal) throw IllegalArgumentException("Real quaternion wasn't real!")
+		if (!pure.isPure) throw IllegalArgumentException("Pure quaternion wasn't pure!")
+		this.w = real.w
+		this.x = pure.x
+		this.z = pure.y
+		this.y = pure.z
 	}
 	
 	operator fun plus(other: QuaternionF): QuaternionF {
@@ -90,6 +114,13 @@ class QuaternionF {
 				QuaternionF(0.0f, 0.0f, 0.0f, 0.0f)
 			}
 		}
+	
+	val isReal
+		// See: https://www.3dgep.com/understanding-quaternions/#a-real-quaternion
+		get() = this.x == 0.0f && this.y == 0.0f && this.z == 0.0f
+	val isPure
+		// See: https://www.3dgep.com/understanding-quaternions/#pure-quaternions
+		get() = this.w == 0.0f
 	
 	val conjugate
 		get() = QuaternionF(w, -x, -y, -z)
