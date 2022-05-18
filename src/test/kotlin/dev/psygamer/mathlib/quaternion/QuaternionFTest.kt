@@ -1,24 +1,23 @@
-package dev.psygamer.mathlib.rotation
+package dev.psygamer.mathlib.quaternion
 
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.*
 
 internal class QuaternionFTest {
 	
 	@Test
 	fun alternativeAccessors() {
 		val q = QuaternionF(1.0f, 2.0f, 1.25f, 0.2f)
-		assertEquals(q.r, q.w)
-		assertEquals(q.i, q.x)
-		assertEquals(q.j, q.y)
-		assertEquals(q.k, q.z)
+		Assertions.assertEquals(q.r, q.w)
+		Assertions.assertEquals(q.i, q.x)
+		Assertions.assertEquals(q.j, q.y)
+		Assertions.assertEquals(q.k, q.z)
 		
-		assertEquals(q.real, q.r)
+		Assertions.assertEquals(q.real, q.r)
 	}
 	
 	@Test
 	fun plus() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(4.2f + 6.9f, 2.0f + 3.0f, 3.5f + 1.5f, 1.2f + 0.7f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f) + QuaternionF(6.9f, 3.0f, 1.5f, 0.7f)
 		)
@@ -26,7 +25,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun minus() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(4.2f - 6.9f, 2.0f - 3.0f, 3.5f - 1.5f, 1.2f - 0.7f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f) - QuaternionF(6.9f, 3.0f, 1.5f, 0.7f)
 		)
@@ -34,7 +33,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun times() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(
 				-2.0f * 3.0f - 3.5f * 1.5f - 1.2f * 0.7f + 4.2f * 6.9f,
 				+2.0f * 6.9f + 3.5f * 0.7f - 1.2f * 1.5f + 4.2f * 3.0f,
@@ -47,11 +46,11 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun realQuatTimesRealQuatIsRealQuat() {
-		assertTrue(
+		Assertions.assertTrue(
 			(QuaternionF(1.0f, 0.0f, 0.0f, 0.0f) *
 			 QuaternionF(2.0f, 0.0f, 0.0f, 0.0f)).isReal
 		)
-		assertFalse(
+		Assertions.assertFalse(
 			(QuaternionF(1.0f, 0.0f, 0.0f, 0.0f) *
 			 QuaternionF(2.0f, 0.0f, 0.0f, 0.1f)).isReal
 		)
@@ -59,7 +58,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun div() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(
 				-2.0f * -3.0f - 3.5f * -1.5f - 1.2f * -0.7f + 4.2f * +6.9f,
 				+2.0f * +6.9f + 3.5f * -0.7f - 1.2f * -1.5f + 4.2f * -3.0f,
@@ -72,7 +71,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun dot() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(1.0f * 5.0f, 2.0f * 6.0f, 3.0f * 7.0f, 4.0f * 8.0f),
 			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f) dot QuaternionF(5.0f, 6.0f, 7.0f, 8.0f),
 		)
@@ -80,7 +79,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun conjugate() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(4.2f, -2.0f, -3.5f, -1.2f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).conjugate
 		)
@@ -88,7 +87,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun inverse() {
-		assertEquals(
+		Assertions.assertEquals(
 			QuaternionF(1.0f, 0.0f, 0.0f, 0.0f),
 			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f) *
 			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f).inverse
@@ -100,15 +99,15 @@ internal class QuaternionFTest {
 		val q = (
 				QuaternionF(4.2f, 2.0f, 3.5f, 1.2f) *
 				QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).conjugate).normalized
-		assertEquals(1.0f, q.w, 0.001f)
-		assertEquals(0.0f, q.x, 0.001f)
-		assertEquals(0.0f, q.y, 0.001f)
-		assertEquals(0.0f, q.z, 0.001f)
+		Assertions.assertEquals(1.0f, q.w, 0.001f)
+		Assertions.assertEquals(0.0f, q.x, 0.001f)
+		Assertions.assertEquals(0.0f, q.y, 0.001f)
+		Assertions.assertEquals(0.0f, q.z, 0.001f)
 	}
 	
 	@Test
 	fun norm() {
-		assertEquals(7.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).norm)
-		assertEquals(49.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).normSquared)
+		Assertions.assertEquals(7.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).norm)
+		Assertions.assertEquals(49.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).normSquared)
 	}
 }

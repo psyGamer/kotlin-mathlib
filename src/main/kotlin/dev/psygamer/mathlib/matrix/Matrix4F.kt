@@ -1,6 +1,6 @@
 package dev.psygamer.mathlib.matrix
 
-import dev.psygamer.mathlib.rotation.QuaternionF
+import dev.psygamer.mathlib.quaternion.QuaternionF
 
 class Matrix4F {
 	

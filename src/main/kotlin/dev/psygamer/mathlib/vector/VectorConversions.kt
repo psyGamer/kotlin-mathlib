@@ -7,7 +7,7 @@ import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
 import dev.psygamer.mathlib.clamp
-import dev.psygamer.mathlib.rotation.QuaternionF
+import dev.psygamer.mathlib.quaternion.QuaternionF
 
 fun eulerToQuaternion(v: Vector3F) =
 	eulerToQuaternion(v.x, v.y, v.z)

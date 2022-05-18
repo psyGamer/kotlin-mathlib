@@ -1,4 +1,4 @@
-package dev.psygamer.mathlib.rotation
+package dev.psygamer.mathlib.quaternion
 
 import kotlin.math.sqrt
 import dev.psygamer.mathlib.*
