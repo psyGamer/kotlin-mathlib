@@ -127,6 +127,11 @@ class QuaternionF {
 	val inverted
 		get() = QuaternionF(w, -x, -y, -z)
 	
+	val norm: Float
+		get() = sqrt(this.w * this.w + this.x * this.x + this.y * this.y + this.z * this.z)
+	val normSquared: Float
+		get() = this.w * this.w + this.x * this.x + this.y * this.y + this.z * this.z
+	
 	override fun toString(): String {
 		return "Quaternion(w=$w, x=$x, y=$y, z=$z)"
 	}

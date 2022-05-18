@@ -96,4 +96,10 @@ internal class QuaternionFTest {
 		assertEquals(0.0f, q.y, 0.001f)
 		assertEquals(0.0f, q.z, 0.001f)
 	}
+	
+	@Test
+	fun norm() {
+		assertEquals(7.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).norm)
+		assertEquals(49.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).normSquared)
+	}
 }
