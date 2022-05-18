@@ -1,7 +1,7 @@
 package dev.psygamer.mathlib.rotation
 
 import kotlin.math.sqrt
-import dev.psygamer.mathlib.almostEquals
+import dev.psygamer.mathlib.*
 import dev.psygamer.mathlib.vector.*
 
 class QuaternionF {
@@ -99,15 +99,13 @@ class QuaternionF {
 	
 	val normalized: QuaternionF
 		get() {
-			val magnitudeSquared = w * w + x * x + y * y + z * z
-			
-			return if (magnitudeSquared > 1.0E-4f) {
-				val magnitude = sqrt(magnitudeSquared)
+			return if (this.normSquared > 1.0E-4f) {
+				val norm = this.norm
 				QuaternionF(
-					w / magnitude,
-					x / magnitude,
-					y / magnitude,
-					z / magnitude,
+					w / norm,
+					x / norm,
+					y / norm,
+					z / norm,
 				)
 			} else {
 				// Set to 0 if the values are basically 0
@@ -128,9 +126,9 @@ class QuaternionF {
 		get() = QuaternionF(w, -x, -y, -z)
 	
 	val norm: Float
-		get() = sqrt(this.w * this.w + this.x * this.x + this.y * this.y + this.z * this.z)
+		get() = sqrt(this.w.squared + this.x.squared + this.y.squared + this.z.squared)
 	val normSquared: Float
-		get() = this.w * this.w + this.x * this.x + this.y * this.y + this.z * this.z
+		get() = this.w.squared + this.x.squared + this.y.squared + this.z.squared
 	
 	override fun toString(): String {
 		return "Quaternion(w=$w, x=$x, y=$y, z=$z)"
