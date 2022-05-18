@@ -88,6 +88,10 @@ class QuaternionF {
 		)
 	}
 	
+	operator fun div(scalar: Float): QuaternionF {
+		return this * (1.0f / scalar)
+	}
+	
 	operator fun div(other: QuaternionF): QuaternionF {
 		val nw = -this.x * -other.x - this.y * -other.y - this.z * -other.z + this.w * +other.w
 		val nx = +this.x * +other.w + this.y * -other.z - this.z * -other.y + this.w * -other.x
@@ -122,8 +126,9 @@ class QuaternionF {
 	
 	val conjugate
 		get() = QuaternionF(w, -x, -y, -z)
-	val inverted
-		get() = QuaternionF(w, -x, -y, -z)
+	val inverse
+		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-normalization
+		get() = this.conjugate / this.normSquared
 	
 	val norm: Float
 		get() = sqrt(this.w.squared + this.x.squared + this.y.squared + this.z.squared)

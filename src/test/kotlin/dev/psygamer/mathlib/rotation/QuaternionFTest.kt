@@ -76,13 +76,14 @@ internal class QuaternionFTest {
 			QuaternionF(4.2f, -2.0f, -3.5f, -1.2f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).conjugate
 		)
+	}
+	
+	@Test
+	fun inverse() {
 		assertEquals(
-			QuaternionF(4.2f, -2.0f, -3.5f, -1.2f),
-			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).inverted
-		)
-		assertEquals(
-			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).conjugate,
-			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).inverted
+			QuaternionF(1.0f, 0.0f, 0.0f, 0.0f),
+			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f) *
+			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f).inverse
 		)
 	}
 	
