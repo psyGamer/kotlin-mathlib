@@ -25,6 +25,7 @@ class QuaternionF {
 	}
 	
 	operator fun plus(other: QuaternionF): QuaternionF {
+		// See: https://www.3dgep.com/understanding-quaternions/#adding-and-subtracting-quaternions
 		return QuaternionF(
 			this.w + other.w,
 			this.x + other.x,
@@ -34,6 +35,7 @@ class QuaternionF {
 	}
 	
 	operator fun minus(other: QuaternionF): QuaternionF {
+		// See: https://www.3dgep.com/understanding-quaternions/#adding-and-subtracting-quaternions
 		return QuaternionF(
 			this.w - other.w,
 			this.x - other.x,
@@ -42,14 +44,24 @@ class QuaternionF {
 		)
 	}
 	
-	/** See: [EuclideanSpace - Quaternion Multiplication](https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm#mul) */
+	operator fun times(scalar: Float): QuaternionF {
+		// See: https://www.3dgep.com/understanding-quaternions/#multiplying-a-quaternion-by-a-scalar
+		return QuaternionF(
+			this.w * scalar,
+			this.x * scalar,
+			this.y * scalar,
+			this.z * scalar,
+		)
+	}
+	
 	operator fun times(other: QuaternionF): QuaternionF {
-		val nw = -this.x * other.x - this.y * other.y - this.z * other.z + this.w * other.w
-		val nx = +this.x * other.w + this.y * other.z - this.z * other.y + this.w * other.x
-		val ny = -this.x * other.z + this.y * other.w + this.z * other.x + this.w * other.y
-		val nz = +this.x * other.y - this.y * other.x + this.z * other.w + this.w * other.z
-		
-		return QuaternionF(nw, nx, ny, nz)
+		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-products
+		return QuaternionF(
+			this.w * other.w - this.x * other.x - this.y * other.y - this.z * other.z,
+			this.w * other.x + other.w * this.x + this.y * other.z - other.y * this.z,
+			this.w * other.y + other.w * this.y + this.z * other.x - other.z * this.x,
+			this.w * other.z + other.w * this.z + this.x * other.y - other.x * this.y,
+		)
 	}
 	
 	operator fun div(other: QuaternionF): QuaternionF {
