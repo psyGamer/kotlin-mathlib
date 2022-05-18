@@ -102,6 +102,7 @@ class QuaternionF {
 	}
 	
 	val normalized: QuaternionF
+		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-normalization
 		get() {
 			return if (this.normSquared > 1.0E-4f) {
 				val norm = this.norm
@@ -125,12 +126,14 @@ class QuaternionF {
 		get() = this.w == 0.0f
 	
 	val conjugate
+		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-conjugate
 		get() = QuaternionF(w, -x, -y, -z)
 	val inverse
 		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-normalization
 		get() = this.conjugate / this.normSquared
 	
 	val norm: Float
+		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-norm
 		get() = sqrt(this.w.squared + this.x.squared + this.y.squared + this.z.squared)
 	val normSquared: Float
 		get() = this.w.squared + this.x.squared + this.y.squared + this.z.squared
