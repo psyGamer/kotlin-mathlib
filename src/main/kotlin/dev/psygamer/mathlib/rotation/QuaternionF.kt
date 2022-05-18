@@ -101,6 +101,15 @@ class QuaternionF {
 		return QuaternionF(nw, nx, ny, nz)
 	}
 	
+	infix fun dot(other: QuaternionF): QuaternionF {
+		return QuaternionF(
+			this.w * other.w,
+			this.x * other.x,
+			this.y * other.y,
+			this.z * other.z
+		)
+	}
+	
 	val normalized: QuaternionF
 		// See: https://www.3dgep.com/understanding-quaternions/#quaternion-normalization
 		get() {

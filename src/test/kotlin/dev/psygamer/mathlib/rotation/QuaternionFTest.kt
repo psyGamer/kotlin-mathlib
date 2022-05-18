@@ -71,6 +71,14 @@ internal class QuaternionFTest {
 	}
 	
 	@Test
+	fun dot() {
+		assertEquals(
+			QuaternionF(1.0f * 5.0f, 2.0f * 6.0f, 3.0f * 7.0f, 4.0f * 8.0f),
+			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f) dot QuaternionF(5.0f, 6.0f, 7.0f, 8.0f),
+		)
+	}
+	
+	@Test
 	fun conjugate() {
 		assertEquals(
 			QuaternionF(4.2f, -2.0f, -3.5f, -1.2f),
