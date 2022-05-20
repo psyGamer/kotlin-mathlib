@@ -114,4 +114,13 @@ internal class ComplexDTest {
 	fun angle() {
 		assertEquals(Math.toRadians(45.0), ComplexD(1.0, 1.0).angle, 0.001)
 	}
+	
+	@Test
+	fun rotors() {
+		assertEquals(ComplexD(0.0, 1.0), ComplexD(1.0, 0.0).rotate(90.0))
+		assertEquals(ComplexD(0.0, -1.0), ComplexD(1.0, 0.0).rotate(-90.0))
+		assertEquals(ComplexD(-1.0, 0.0), ComplexD(1.0, 0.0).rotate(180.0))
+		assertEquals(ComplexD(1.0, 0.0).rotate(180.0), ComplexD(1.0, 0.0).rotate(-180.0))
+		assertEquals(ComplexD(sqrt(0.5), sqrt(0.5)), ComplexD(1.0, 0.0).rotate(45.0))
+	}
 }

@@ -114,4 +114,13 @@ internal class ComplexFTest {
 	fun angle() {
 		assertEquals(Math.toRadians(45.0).toFloat(), ComplexF(1.0f, 1.0f).angle, 0.001f)
 	}
+	
+	@Test
+	fun rotors() {
+		assertEquals(ComplexF(0.0f, 1.0f), ComplexF(1.0f, 0.0f).rotate(90.0f))
+		assertEquals(ComplexF(0.0f, -1.0f), ComplexF(1.0f, 0.0f).rotate(-90.0f))
+		assertEquals(ComplexF(-1.0f, 0.0f), ComplexF(1.0f, 0.0f).rotate(180.0f))
+		assertEquals(ComplexF(1.0f, 0.0f).rotate(180.0f), ComplexF(1.0f, 0.0f).rotate(-180.0f))
+		assertEquals(ComplexF(sqrt(0.5f), sqrt(0.5f)), ComplexF(1.0f, 0.0f).rotate(45.0f))
+	}
 }

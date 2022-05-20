@@ -30,6 +30,31 @@ class ComplexI(val r: Int, val i: Int) {
 		)
 	}
 	
+	val rotatedLeft90Degrees: ComplexI
+		// See: https://www.3dgep.com/understanding-quaternions/#rotors
+		get() = ComplexI(
+			/*			 cos(90°) = 0		 sin(90°) = 1
+				this.r * cos(90°) - this.i * sin(90°),
+				this.r * sin(90°) + this.i * cos(90°)	*/
+			-this.i, this.r
+		)
+	val rotatedRight90Degrees: ComplexI
+		// See: https://www.3dgep.com/understanding-quaternions/#rotors
+		get() = ComplexI(
+			/*			 cos(-90°) = -0		  sin(-90°) = -1
+				this.r * cos(-90°) - this.i * sin(-90°),
+				this.r * sin(-90°) + this.i * cos(-90°)	*/
+			this.i, -this.r
+		)
+	val rotated180Degrees: ComplexI
+		// See: https://www.3dgep.com/understanding-quaternions/#rotors
+		get() = ComplexI(
+			/*			 cos(180°) = -1		  sin(180°) = -0
+				this.r * cos(180°) - this.i * sin(180°),
+				this.r * sin(180°) + this.i * cos(180°)	*/
+			-this.r, -this.i
+		)
+	
 	val conjugate
 		get() = ComplexI(this.r, -this.i)
 	

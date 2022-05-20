@@ -114,4 +114,11 @@ internal class ComplexITest {
 	fun angle() {
 		assertEquals(Math.toRadians(45.0).toFloat(), ComplexI(1, 1).angle, 0.001f)
 	}
+	
+	@Test
+	fun rotors() {
+		assertEquals(ComplexI(0, 1), ComplexI(1, 0).rotatedLeft90Degrees)
+		assertEquals(ComplexI(0, -1), ComplexI(1, 0).rotatedRight90Degrees)
+		assertEquals(ComplexI(-1, 0), ComplexI(1, 0).rotated180Degrees)
+	}
 }

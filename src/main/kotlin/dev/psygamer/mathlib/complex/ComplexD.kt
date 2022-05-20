@@ -1,6 +1,7 @@
 package dev.psygamer.mathlib.complex
 
 import kotlin.math.*
+import dev.psygamer.mathlib.almostEquals
 
 class ComplexD(val r: Double, val i: Double) {
 	
@@ -38,6 +39,18 @@ class ComplexD(val r: Double, val i: Double) {
 		)
 	}
 	
+	fun rotate(degrees: Double): ComplexD {
+		// See: https://www.3dgep.com/understanding-quaternions/#rotors
+		val rad = Math.toRadians(degrees)
+		val cos = cos(rad)
+		val sin = sin(rad)
+		
+		return ComplexD(
+			this.r * cos - this.i * sin,
+			this.r * sin + this.i * cos
+		)
+	}
+	
 	val conjugate
 		get() = ComplexD(this.r, -this.i)
 	
@@ -57,8 +70,8 @@ class ComplexD(val r: Double, val i: Double) {
 		
 		other as ComplexD
 		
-		if (r != other.r) return false
-		if (i != other.i) return false
+		if (!r.almostEquals(other.r)) return false
+		if (!i.almostEquals(other.i)) return false
 		
 		return true
 	}

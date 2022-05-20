@@ -1,6 +1,7 @@
 package dev.psygamer.mathlib.complex
 
 import kotlin.math.*
+import dev.psygamer.mathlib.almostEquals
 
 class ComplexF(val r: Float, val i: Float) {
 	
@@ -34,6 +35,18 @@ class ComplexF(val r: Float, val i: Float) {
 		)
 	}
 	
+	fun rotate(degrees: Float): ComplexF {
+		// See: https://www.3dgep.com/understanding-quaternions/#rotors
+		val rad = Math.toRadians(degrees.toDouble()).toFloat()
+		val cos = cos(rad)
+		val sin = sin(rad)
+		
+		return ComplexF(
+			this.r * cos - this.i * sin,
+			this.r * sin + this.i * cos
+		)
+	}
+	
 	val conjugate
 		get() = ComplexF(this.r, -this.i)
 	
@@ -53,8 +66,8 @@ class ComplexF(val r: Float, val i: Float) {
 		
 		other as ComplexF
 		
-		if (r != other.r) return false
-		if (i != other.i) return false
+		if (!r.almostEquals(other.r)) return false
+		if (!i.almostEquals(other.i)) return false
 		
 		return true
 	}
