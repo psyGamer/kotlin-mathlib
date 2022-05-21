@@ -27,12 +27,6 @@ jobs:
         
       - name: Build with Gradle
         run: ./gradlew build
-        
-      - name: Upload Artifact to Github Actions
-        uses: actions/upload-artifact@v2
-        with:
-          name: wireframe
-          path: build/libs
           
       - name: Cache build
         uses: actions/cache@v2
