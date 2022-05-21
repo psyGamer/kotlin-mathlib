@@ -79,6 +79,10 @@ jobs:
               ;;
           esac
           echo Test status: ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}
+          # Debug stuff
+          pwd
+          ls -la
+          cat steps.test-results.outputs.json
           
       - name: Get test information from JSON
         if: github.ref == 'refs/heads/master' # Only for master branch
