@@ -35,7 +35,7 @@ jobs:
           path: ./build
           key: ${{ github.sha }}
       
-  publish-test-results:    
+  test-results:    
     name: Publish JUnit test results    
     needs: build    
         
@@ -56,9 +56,9 @@ jobs:
           key: ${{ github.sha }} 
               
       - name: Publish Test Results
+        id: test-results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
-        id: test-results
         with:
           files: "build/test-results/**/*.xml"
           check_run_annotations: skipped tests
@@ -78,13 +78,17 @@ jobs:
               echo "BADGE_COLOR=696969" >> $GITHUB_ENV
               ;;
           esac
+          echo Test status: ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}
           
       - name: Get test information from JSON
         if: github.ref == 'refs/heads/master' # Only for master branch
         shell: bash
         run: |
-          echo "BADGE_TEST_TOTAL=${{ fromJSON( steps.test-results.outputs.json ).tests }}"
-          echo "BADGE_TEST_SUCC=${{ fromJSON( steps.test-results.outputs.json ).tests_succ }}"
+          TOTAL=${{ fromJSON( steps.test-results.outputs.json ).tests }}
+          SUCC=${{ fromJSON( steps.test-results.outputs.json ).tests_succ }}
+          echo "BADGE_TEST_TOTAL=$TOTAL" >> $GITHUB_ENV
+          echo "BADGE_TEST_SUCC=$SUCC" >> $GITHUB_ENV
+          echo "Successful tests: ${SUCC}/${TOTAL}
           
       - name: Download badge from shields.io
         if: github.ref == 'refs/heads/master' # Only for master branch
