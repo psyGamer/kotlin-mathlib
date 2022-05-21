@@ -1,10 +1,14 @@
 # Kotlin MathLib
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/psyGamer/kotlin-mathlib/JUnit%20Tests?style=for-the-badge)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/psyGamer/kotlin-mathlib?style=for-the-badge)
-![Lines of code](https://img.shields.io/tokei/lines/github/psyGamer/kotlin-mathlib?style=for-the-badge)
-![Code license](https://img.shields.io/github/license/psyGamer/kotlin-mathlib?style=for-the-badge)
-
+<div align="center">
+  <img src="https://gist.githubusercontent.com/psyGamer/40c5a8ddf8d023e49a8755d9528ab09a/raw/babc5489ae2883d41e7cee5700cf8b7c46834d40/badge.svg" alt="Unit Test Status" />
+  <img src="https://img.shields.io/github/v/release/psyGamer/kotlin-mathlib?style=for-the-badge" alt="Latest Release"/>
+  <img src="https://img.shields.io/github/license/psyGamer/kotlin-mathlib?style=for-the-badge" alt="Code License"/>
+  <br>
+  <img src="https://img.shields.io/tokei/lines/github/psyGamer/kotlin-mathlib?style=for-the-badge" alt="Lines of Code"/>
+  <img src="https://img.shields.io/endpoint?color=blue&label=Coding%20time&style=for-the-badge&url=https%3A%2F%2Fwakapi.dev%2Fapi%2Fcompat%2Fshields%2Fv1%2FpsyGamer%2Finterval%3Aany%26label%3Dany%26filter%3Dproject%3Amathlib" alt="Coding time" />
+</div>
+  
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
