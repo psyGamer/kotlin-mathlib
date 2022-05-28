@@ -3,6 +3,8 @@ package dev.psygamer.mathlib.vector
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import kotlin.math.sqrt
+import dev.psygamer.mathlib.quaternion.QuaternionF
+import dev.psygamer.mathlib.squared
 
 internal class Vector3FTest {
 
@@ -85,8 +87,33 @@ internal class Vector3FTest {
 		assertEquals(122.0f, Vector3F(9.0f, 2.0f, 7.0f) dot Vector3I(4, 8, 10))
 	}
 
+	@Test
 	fun rotation() {
-	
+		assertEquals(
+			Vector3F(0.0f, 1.0f, 0.0f),
+			Vector3F(1.0f, 0.0f, 0.0f).rotate(
+				QuaternionF(90.0f, Vector3F(0.0f, 0.0f, 1.0f))
+			)
+		)
+		assertEquals(
+			Vector3F(sqrt(1.5f.squared / 2.0f), 0.0f, sqrt(1.5f.squared / 2.0f)),
+			Vector3F(1.5f, 0.0f, 0.0f).rotate(
+				QuaternionF(45.0f, Vector3F(0.0f, -1.0f, 0.0f))
+			)
+		)
+		assertEquals(
+			Vector3F(0.0f, 0.0f, 1.25f),
+			Vector3F(1.25f, 0.0f, 0.0f).rotate(
+				QuaternionF(240.0f, Vector3F(1.0f, 1.0f, 1.0f))
+			)
+		)
+
+		assertEquals(
+			Vector3F(0.0f, 2.5f, 0.0f),
+			Vector3F(0.0f, 2.5f, 0.0f).rotate(
+				QuaternionF(69.0f, Vector3F(0.0f, 1.0f, 0.0f))
+			)
+		)
 	}
 
 	@Test

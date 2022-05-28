@@ -1,6 +1,7 @@
 package dev.psygamer.mathlib.vector
 
 import kotlin.math.*
+import dev.psygamer.mathlib.almostEquals
 import dev.psygamer.mathlib.quaternion.QuaternionF
 
 open class Vector3F(val x: Float, val y: Float, val z: Float) {
@@ -95,7 +96,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	}
 
 	fun rotate(q: QuaternionF): Vector3F {
-		val v = q * QuaternionF(0.0f, this) * q.inverse
+		val v = q * QuaternionF.fromVector(0.0f, this) * q.inverse
 		return Vector3F(v.x, v.y, v.z)
 	}
 
@@ -137,16 +138,18 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	override fun toString(): String {
 		return "Vector3f($x, $y, $z)"
 	}
-	
-	override fun equals(other: Any?): Boolean {
-		if (other == null)
-			return false
-		if (other !is Vector3F)
-			return false
-		if (this === other)
-			return true
 
-		return this.x == other.x && this.y == other.y && this.z == other.z
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (javaClass != other?.javaClass) return false
+
+		other as Vector3F
+
+		if (!x.almostEquals(other.x)) return false
+		if (!y.almostEquals(other.y)) return false
+		if (!z.almostEquals(other.z)) return false
+
+		return true
 	}
 
 	override fun hashCode(): Int {

@@ -8,10 +8,10 @@ class QuaternionF {
 
 	companion object {
 
-		fun fromVector(w: Int, v: Vector3I): QuaternionF =
+		fun fromVector(w: Int = 0, v: Vector3I): QuaternionF =
 			QuaternionF(w.toFloat(), v.x.toFloat(), v.y.toFloat(), v.z.toFloat())
 
-		fun fromVector(w: Float, v: Vector3F): QuaternionF =
+		fun fromVector(w: Float = 0.0f, v: Vector3F): QuaternionF =
 			QuaternionF(w, v.x, v.y, v.z)
 	}
 
@@ -37,19 +37,21 @@ class QuaternionF {
 	constructor(degrees: Float, v: Vector3I) {
 		val rad = Math.toRadians(degrees / 2.0)
 		val sin = sin(rad).toFloat()
+		val vn = v.normalized
 		this.w = cos(rad).toFloat()
-		this.x = sin * v.x.toFloat()
-		this.y = sin * v.y.toFloat()
-		this.z = sin * v.z.toFloat()
+		this.x = sin * vn.x
+		this.y = sin * vn.y
+		this.z = sin * vn.z
 	}
 
 	constructor(degrees: Float, v: Vector3F) {
 		val rad = Math.toRadians(degrees / 2.0)
 		val sin = sin(rad).toFloat()
+		val vn = v.normalized
 		this.w = cos(rad).toFloat()
-		this.x = sin * v.x
-		this.y = sin * v.y
-		this.z = sin * v.z
+		this.x = sin * vn.x
+		this.y = sin * vn.y
+		this.z = sin * vn.z
 	}
 
 	constructor(real: QuaternionF, pure: QuaternionF) {
