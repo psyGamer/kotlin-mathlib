@@ -67,8 +67,8 @@ jobs:
       - name: Conclusion
         run: |
           echo "Conclusion is ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}"
-          echo "Total tests is ${{ fromJSON( steps.test-results.outputs.json ).tests }}"
-          echo "Succesful tests is ${{ fromJSON( steps.test-results.outputs.json ).tests_succ }}"
+          echo "Total tests is ${{ fromJSON( steps.test-results.outputs.json ).stats.tests }}"
+          echo "Succesful tests is ${{ fromJSON( steps.test-results.outputs.json ).stats.tests_succ }}"
           echo "JSON is ${{ fromJSON( steps.test-results.outputs.json ) }}"
           pwd
           ls -la
