@@ -104,11 +104,11 @@ jobs:
       - name: Download badge from shields.io
         #if: github.ref == 'refs/heads/master' # Only for master branch
         shell: bash
-        run: wget "https://img.shields.io/static/v1?label=Tests&message=${TEST_TOTAL}/${TEST_SUCC}&color=${BADGE_COLOR}&style=for-the-badge" -O badge.svg
         with:
           BADGE_COLOR: ${{ env.BADGE_COLOR }}
           TEST_TOTAL: ${{ env.TEST_TOTAL }}
           TEST_SUCC: ${{ env.TEST_SUCC }}
+        run: wget "https://img.shields.io/static/v1?label=Tests&message=${TEST_TOTAL}/${TEST_SUCC}&color=${BADGE_COLOR}&style=for-the-badge" -O badge.svg
 
       - name: Upload badge to Gist
         #if: github.ref == 'refs/heads/master' # Only for master branch
