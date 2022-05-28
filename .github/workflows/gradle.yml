@@ -80,10 +80,10 @@ jobs:
         run: |
           case ${{ fromJSON( steps.test-results.outputs.json ).conclusion }} in
             success)
-              echo "BADGE_COLOR=E91500" >> $GITHUB_ENV
+              echo "BADGE_COLOR=44DD25" >> $GITHUB_ENV
               ;;
             failure)
-              echo "BADGE_COLOR=44DD25" >> $GITHUB_ENV
+              echo "BADGE_COLOR=E91500" >> $GITHUB_ENV
               ;;
             neutral)
               echo "BADGE_COLOR=696969" >> $GITHUB_ENV
