@@ -1,7 +1,7 @@
 # Kotlin MathLib
 
 <div align="center">
-  <img src="https://gist.githubusercontent.com/psyGamer/40c5a8ddf8d023e49a8755d9528ab09a/raw/babc5489ae2883d41e7cee5700cf8b7c46834d40/badge.svg" alt="Unit Test Status" />
+  <img src="https://gist.githubusercontent.com/psyGamer/40c5a8ddf8d023e49a8755d9528ab09a/raw/badge.svg" alt="Unit Test Status" />
   <img src="https://img.shields.io/github/v/release/psyGamer/kotlin-mathlib?style=for-the-badge" alt="Latest Release"/>
   <img src="https://img.shields.io/github/license/psyGamer/kotlin-mathlib?style=for-the-badge" alt="Code License"/>
   <br>
