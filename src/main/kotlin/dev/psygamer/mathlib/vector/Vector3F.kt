@@ -1,6 +1,7 @@
 package dev.psygamer.mathlib.vector
 
 import kotlin.math.*
+import dev.psygamer.mathlib.quaternion.QuaternionF
 
 open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	
@@ -16,6 +17,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	operator fun plus(other: Vector3I): Vector3F {
 		return Vector3F(this.x + other.x, this.y + other.y, this.z + other.z)
 	}
+	
 	operator fun plus(other: Vector3F): Vector3F {
 		return Vector3F(this.x + other.x, this.y + other.y, this.z + other.z)
 	}
@@ -23,6 +25,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	operator fun minus(other: Vector3I): Vector3F {
 		return Vector3F(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
+	
 	operator fun minus(other: Vector3F): Vector3F {
 		return Vector3F(this.x - other.x, this.y - other.y, this.z - other.z)
 	}
@@ -30,6 +33,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	operator fun times(other: Vector3I): Vector3F {
 		return Vector3F(this.x * other.x, this.y * other.y, this.z * other.z)
 	}
+	
 	operator fun times(other: Vector3F): Vector3F {
 		return Vector3F(this.x * other.x, this.y * other.y, this.z * other.z)
 	}
@@ -37,6 +41,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	operator fun times(scalar: Int): Vector3F {
 		return Vector3F((this.x * scalar), (this.y * scalar), (this.z * scalar))
 	}
+	
 	operator fun times(scalar: Float): Vector3F {
 		return Vector3F((this.x * scalar), (this.y * scalar), (this.z * scalar))
 	}
@@ -46,6 +51,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 			throw ArithmeticException("Division by zero!")
 		return Vector3F(this.x / other.x, this.y / other.y, this.z / other.z)
 	}
+	
 	operator fun div(other: Vector3F): Vector3F {
 		if (other.x == 0.0f || other.y == 0.0f || other.z == 0.0f)
 			throw ArithmeticException("Division by zero!")
@@ -57,6 +63,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 			throw ArithmeticException("Division by zero!")
 		return Vector3F((this.x / scalar), (this.y / scalar), (this.z / scalar))
 	}
+	
 	operator fun div(scalar: Float): Vector3F {
 		if (scalar == 0.0f)
 			throw ArithmeticException("Division by zero!")
@@ -70,6 +77,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 			this.x * other.y - this.y * other.x
 		)
 	}
+	
 	infix fun cross(other: Vector3F): Vector3F {
 		return Vector3F(
 			this.y * other.z - this.z * other.y,
@@ -81,13 +89,20 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	infix fun dot(other: Vector3I): Float {
 		return (this.x * other.x + this.y * other.y + this.z * other.z)
 	}
+	
 	infix fun dot(other: Vector3F): Float {
 		return (this.x * other.x + this.y * other.y + this.z * other.z)
+	}
+	
+	fun rotate(q: QuaternionF): Vector3F {
+		val v = q * QuaternionF(0.0f, this) * q.inverse
+		return Vector3F(v.x, v.y, v.z)
 	}
 	
 	infix fun distanceTo(other: Vector3I): Float {
 		return (this - other).magnitude
 	}
+	
 	infix fun distanceTo(other: Vector3F): Float {
 		return (this - other).magnitude
 	}
@@ -95,6 +110,7 @@ open class Vector3F(val x: Float, val y: Float, val z: Float) {
 	infix fun distanceToSquared(other: Vector3I): Float {
 		return (this - other).magnitudeSquared
 	}
+	
 	infix fun distanceToSquared(other: Vector3F): Float {
 		return (this - other).magnitudeSquared
 	}

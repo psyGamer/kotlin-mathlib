@@ -1,10 +1,19 @@
 package dev.psygamer.mathlib.quaternion
 
-import kotlin.math.sqrt
+import kotlin.math.*
 import dev.psygamer.mathlib.*
 import dev.psygamer.mathlib.vector.*
 
 class QuaternionF {
+	
+	companion object {
+		
+		fun fromVector(w: Int, v: Vector3I): QuaternionF =
+			QuaternionF(w.toFloat(), v.x.toFloat(), v.y.toFloat(), v.z.toFloat())
+		
+		fun fromVector(w: Float, v: Vector3F): QuaternionF =
+			QuaternionF(w, v.x, v.y, v.z)
+	}
 	
 	val w: Float
 	val x: Float
@@ -25,18 +34,22 @@ class QuaternionF {
 		this.z = z
 	}
 	
-	constructor(w: Float, v: Vector3I) {
-		this.w = w
-		this.x = v.x.toFloat()
-		this.y = v.y.toFloat()
-		this.z = v.z.toFloat()
+	constructor(degrees: Float, v: Vector3I) {
+		val rad = Math.toRadians(degrees / 2.0)
+		val sin = sin(rad).toFloat()
+		this.w = cos(rad).toFloat()
+		this.x = sin * v.x.toFloat()
+		this.y = sin * v.y.toFloat()
+		this.z = sin * v.z.toFloat()
 	}
 	
-	constructor(w: Float, v: Vector3F) {
-		this.w = w
-		this.x = v.x
-		this.y = v.y
-		this.z = v.z
+	constructor(degrees: Float, v: Vector3F) {
+		val rad = Math.toRadians(degrees / 2.0)
+		val sin = sin(rad).toFloat()
+		this.w = cos(rad).toFloat()
+		this.x = sin * v.x
+		this.y = sin * v.y
+		this.z = sin * v.z
 	}
 	
 	constructor(real: QuaternionF, pure: QuaternionF) {

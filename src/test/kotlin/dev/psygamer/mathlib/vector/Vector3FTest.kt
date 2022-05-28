@@ -85,6 +85,10 @@ internal class Vector3FTest {
 		assertEquals(122.0f, Vector3F(9.0f, 2.0f, 7.0f) dot Vector3I(4, 8, 10))
 	}
 	
+	fun rotation() {
+	
+	}
+	
 	@Test
 	fun getMagnitude() {
 		assertEquals(sqrt(14.0f), Vector3F(1.0f, -2.0f, 3.0f).magnitude)

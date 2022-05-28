@@ -1,23 +1,44 @@
 package dev.psygamer.mathlib.quaternion
 
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
+import kotlin.math.sin
+import dev.psygamer.mathlib.vector.Vector3F
 
 internal class QuaternionFTest {
 	
 	@Test
+	fun rotatorConstructor() {
+		assertEquals(
+			QuaternionF(1.0f, 0.0f, 0.0f, 0.0f),
+			QuaternionF(0.0f, Vector3F(1.0f, 0.0f, 0.0f))
+		)
+		
+		assertEquals(
+			QuaternionF(0.0f, 0.0f, 1.0f, 0.0f),
+			QuaternionF(180.0f, Vector3F(0.0f, 1.0f, 0.0f))
+		)
+		
+		assertEquals(
+			QuaternionF(sin(Math.toRadians(45.0)).toFloat(), 0.0f, 0.0f, sin(Math.toRadians(45.0)).toFloat()),
+			QuaternionF(90.0f, Vector3F(0.0f, 0.0f, 1.0f))
+		)
+	}
+	
+	@Test
 	fun alternativeAccessors() {
 		val q = QuaternionF(1.0f, 2.0f, 1.25f, 0.2f)
-		Assertions.assertEquals(q.r, q.w)
-		Assertions.assertEquals(q.i, q.x)
-		Assertions.assertEquals(q.j, q.y)
-		Assertions.assertEquals(q.k, q.z)
+		assertEquals(q.r, q.w)
+		assertEquals(q.i, q.x)
+		assertEquals(q.j, q.y)
+		assertEquals(q.k, q.z)
 		
-		Assertions.assertEquals(q.real, q.r)
+		assertEquals(q.real, q.r)
 	}
 	
 	@Test
 	fun plus() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(4.2f + 6.9f, 2.0f + 3.0f, 3.5f + 1.5f, 1.2f + 0.7f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f) + QuaternionF(6.9f, 3.0f, 1.5f, 0.7f)
 		)
@@ -25,7 +46,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun minus() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(4.2f - 6.9f, 2.0f - 3.0f, 3.5f - 1.5f, 1.2f - 0.7f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f) - QuaternionF(6.9f, 3.0f, 1.5f, 0.7f)
 		)
@@ -33,7 +54,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun times() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(
 				-2.0f * 3.0f - 3.5f * 1.5f - 1.2f * 0.7f + 4.2f * 6.9f,
 				+2.0f * 6.9f + 3.5f * 0.7f - 1.2f * 1.5f + 4.2f * 3.0f,
@@ -46,11 +67,11 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun realQuatTimesRealQuatIsRealQuat() {
-		Assertions.assertTrue(
+		assertTrue(
 			(QuaternionF(1.0f, 0.0f, 0.0f, 0.0f) *
 			 QuaternionF(2.0f, 0.0f, 0.0f, 0.0f)).isReal
 		)
-		Assertions.assertFalse(
+		assertFalse(
 			(QuaternionF(1.0f, 0.0f, 0.0f, 0.0f) *
 			 QuaternionF(2.0f, 0.0f, 0.0f, 0.1f)).isReal
 		)
@@ -58,7 +79,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun div() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(
 				-2.0f * -3.0f - 3.5f * -1.5f - 1.2f * -0.7f + 4.2f * +6.9f,
 				+2.0f * +6.9f + 3.5f * -0.7f - 1.2f * -1.5f + 4.2f * -3.0f,
@@ -71,7 +92,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun dot() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(1.0f * 5.0f, 2.0f * 6.0f, 3.0f * 7.0f, 4.0f * 8.0f),
 			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f) dot QuaternionF(5.0f, 6.0f, 7.0f, 8.0f),
 		)
@@ -79,7 +100,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun conjugate() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(4.2f, -2.0f, -3.5f, -1.2f),
 			QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).conjugate
 		)
@@ -87,7 +108,7 @@ internal class QuaternionFTest {
 	
 	@Test
 	fun inverse() {
-		Assertions.assertEquals(
+		assertEquals(
 			QuaternionF(1.0f, 0.0f, 0.0f, 0.0f),
 			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f) *
 			QuaternionF(1.0f, 2.0f, 3.0f, 4.0f).inverse
@@ -99,15 +120,15 @@ internal class QuaternionFTest {
 		val q = (
 				QuaternionF(4.2f, 2.0f, 3.5f, 1.2f) *
 				QuaternionF(4.2f, 2.0f, 3.5f, 1.2f).conjugate).normalized
-		Assertions.assertEquals(1.0f, q.w, 0.001f)
-		Assertions.assertEquals(0.0f, q.x, 0.001f)
-		Assertions.assertEquals(0.0f, q.y, 0.001f)
-		Assertions.assertEquals(0.0f, q.z, 0.001f)
+		assertEquals(1.0f, q.w, 0.001f)
+		assertEquals(0.0f, q.x, 0.001f)
+		assertEquals(0.0f, q.y, 0.001f)
+		assertEquals(0.0f, q.z, 0.001f)
 	}
 	
 	@Test
 	fun norm() {
-		Assertions.assertEquals(7.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).norm)
-		Assertions.assertEquals(49.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).normSquared)
+		assertEquals(7.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).norm)
+		assertEquals(49.0f, QuaternionF(1.0f, 4.0f, 4.0f, -4.0f).normSquared)
 	}
 }
