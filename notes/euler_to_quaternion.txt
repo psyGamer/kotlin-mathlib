@@ -1,0 +1,33 @@
+[x,y,z]
+
+sx = sin(x / 2)
+sy = sin(y / 2)
+sz = sin(z / 2)
+cx = cos(x / 2)
+cy = cos(y / 2)
+cz = cos(z / 2)
+
+q = [cx,sx,0,0] * [cy,0,sy,0] * [cz,0,0,sz]
+
+substitude:
+  ij = -ji = k
+  jk = -kj = i
+  ki = -ik = j
+Note: Think about these substitutions not as arithmetic but rather as applying rotations in that order on the corresponding direction
+See: https://math.stackexchange.com/a/296357
+
+(cx + sxI)(cy + syJ)(cz + szK)
+(cx*cy + cx*syJ + sxI*cy + sxI*syJ)(cz + szK)
+(cx*cy*cz + cx*cy*szK + cx*syJ*cz + cx*syJ*szK + sxI*cy*cz + sxI*cy*szK + sxI*syJ*cz + sxI*syJ*szK)
+(cx*cy*cz + (cx*cy*sz)K (cx*sy*cz)J + (cx*sy*sz)JK + (sx*cy*cz)I + (sx*cy*sz)IK + (sx*sy*cz)IJ + (sx*sy*sz)IJK)
+(cx*cy*cz + (cx*cy*sz)K (cx*sy*cz)J + (cx*sy*sz)I + (sx*cy*cz)I - (sx*cy*sz)J + (sx*sy*cz)K - (sx*sy*sz))
+
+  (cx*cy*cz - sx*sy*sz) 
++ (cx*sy*sz + sx*cy*cz)I 
++ (cx*sy*cz - sx*cy*sz)J 
++ (cx*cy*sz + sx*sy*cz)K
+
+w = c3 c1 c2 - s3 s1 s2
+x = c3 s1 s2 + s3 c1 c2
+y = c3 s1 c2 + s3 c1 s2
+z = c3 c1 s2 - s3 s1 c2

@@ -14,6 +14,7 @@ fun eulerToQuaternion(v: Vector3F) =
 
 /** See: [EuclideanSpace - Conversion Euler to Quaternion](http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm) */
 fun eulerToQuaternion(x: Float, y: Float, z: Float): QuaternionF {
+	// TODO: Check if this causes issues if the euler angles are gimbal locked
 	val sinX = sin(x / 2.0f)
 	val cosX = cos(x / 2.0f)
 	val sinY = sin(y / 2.0f)
@@ -22,10 +23,10 @@ fun eulerToQuaternion(x: Float, y: Float, z: Float): QuaternionF {
 	val cosZ = cos(z / 2.0f)
 	
 	return QuaternionF(
+		w = cosZ * cosY * cosX + sinZ * sinY * sinX,
 		x = sinZ * cosY * cosX - cosZ * sinY * sinX,
 		y = cosZ * sinY * cosX + sinZ * cosY * sinX,
 		z = cosZ * cosY * sinX - sinZ * sinY * cosX,
-		w = cosZ * cosY * cosX + sinZ * sinY * sinX
 	)
 }
 
