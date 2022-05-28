@@ -61,6 +61,7 @@ jobs:
         if: always()
         with:
           files: "build/test-results/**/*.xml"
+          json_file: test-results.json
           check_run_annotations: skipped tests
       
       - name: Conclusion
@@ -69,3 +70,7 @@ jobs:
           echo "Total tests is ${{ fromJSON( steps.test-results.outputs.json ).tests }}"
           echo "Succesful tests is ${{ fromJSON( steps.test-results.outputs.json ).tests_succ }}"
           echo "JSON is ${{ fromJSON( steps.test-results.outputs.json ) }}"
+          pwd
+          ls -la
+          cat test-results.json
+
