@@ -75,7 +75,7 @@ jobs:
           cat test-results.json
 
       - name: Set badge color
-        if: github.ref == 'refs/heads/master' # Only for master branch
+        #if: github.ref == 'refs/heads/master' # Only for master branch
         shell: bash
         run: |
           case ${{ fromJSON( steps.test-results.outputs.json ).conclusion }} in
@@ -92,7 +92,7 @@ jobs:
           echo Test status: ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}
 
       - name: Set total / successful test counts
-        if: github.ref == 'refs/heads/master' # Only for master branch
+        #if: github.ref == 'refs/heads/master' # Only for master branch
         shell: bash
         run: |
           echo "BADGE_TEST_TOTAL=${{ fromJSON( steps.test-results.outputs.json ).stats.tests }}" >> $GITHUB_ENV
@@ -100,13 +100,13 @@ jobs:
           echo "Successful tests: ${BADGE_TEST_SUCC}/${BADGE_TEST_TOTAL}"
 
       - name: Download badge from shields.io
-        if: github.ref == 'refs/heads/master' # Only for master branch
+        #if: github.ref == 'refs/heads/master' # Only for master branch
         shell: bash
         run: |
           wget "https://img.shields.io/static/v1?label=Tests&message=${BADGE_TEST_TOTAL}/${BADGE_TEST_SUCC}&color=${BADGE_COLOR}&style=for-the-badge" -O badge.svg
 
       - name: Upload badge to Gist
-        if: github.ref == 'refs/heads/master' # Only for master branch
+        #if: github.ref == 'refs/heads/master' # Only for master branch
         uses: andymckay/append-gist-action@1fbfbbce708a39bd45846f0955ed5521f2099c6d
         with:
           token: ${{ secrets.GIST_TOKEN }}
