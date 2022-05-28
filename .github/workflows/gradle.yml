@@ -61,13 +61,14 @@ jobs:
         if: always()
         with:
           files: "build/test-results/**/*.xml"
+          json_file: "test-results.json"
           check_run_annotations: skipped tests
           
       - name: Set badge color
         if: github.ref == 'refs/heads/master' # Only for master branch
         shell: bash
         run: |
-          case ${{ fromJSON( steps.test-results.outputs.json ).conclusion }} in
+          case ${{ fromJSON( test-results.json ).conclusion }} in
             success)
               echo "BADGE_COLOR=E91500" >> $GITHUB_ENV
               ;;
@@ -82,7 +83,9 @@ jobs:
           # Debug stuff
           pwd
           ls -la
+          cat test-results.json
           cat steps.test-results.outputs.json
+          echo results: ${{ fromJSON(test-results.json) }}
           
       - name: Get test information from JSON
         if: github.ref == 'refs/heads/master' # Only for master branch
