@@ -21,7 +21,7 @@ fun eulerToQuaternion(x: Float, y: Float, z: Float): QuaternionF {
 	val cosY = cos(y / 2.0f)
 	val sinZ = sin(z / 2.0f)
 	val cosZ = cos(z / 2.0f)
-	
+
 	return QuaternionF(
 		w = cosZ * cosY * cosX + sinZ * sinY * sinX,
 		x = sinZ * cosY * cosX - cosZ * sinY * sinX,
@@ -33,10 +33,10 @@ fun eulerToQuaternion(x: Float, y: Float, z: Float): QuaternionF {
 fun quaternionToEuler(q: QuaternionF): Vector3F {
 	val x0 = 2.0f * (q.w * q.z + q.w * q.y)
 	val x1 = 1.0f - 2.0f * (q.y * q.y + q.z * q.z)
-	
+
 	val z0 = 2.0f * (q.w * q.x + q.y * q.z)
 	val z1 = 1.0f - 2.0f * (q.x * q.x + q.y * q.y)
-	
+
 	return Vector3F(
 		x = atan2(x0, x1),
 		z = atan2(z0, z1),

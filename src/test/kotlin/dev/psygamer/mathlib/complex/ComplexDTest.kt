@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import kotlin.math.sqrt
 
 internal class ComplexDTest {
-	
+
 	@Test
 	fun plusComplexD() {
 		assertEquals(
@@ -21,7 +21,7 @@ internal class ComplexDTest {
 			ComplexD(4.0, 5.0) + ComplexD(0.0, 0.0)
 		)
 	}
-	
+
 	@Test
 	fun plusIsCommutative() {
 		assertEquals(
@@ -29,7 +29,7 @@ internal class ComplexDTest {
 			ComplexD(3.0, 4.0) + ComplexD(1.0, 2.0)
 		)
 	}
-	
+
 	@Test
 	fun minusComplexD() {
 		assertEquals(
@@ -45,7 +45,7 @@ internal class ComplexDTest {
 			ComplexD(4.0, 5.0) - ComplexD(0.0, 0.0)
 		)
 	}
-	
+
 	@Test
 	fun timesScalar() {
 		assertEquals(
@@ -57,7 +57,7 @@ internal class ComplexDTest {
 			ComplexD(1.0, 2.0) * 0.0
 		)
 	}
-	
+
 	@Test
 	fun timesComplexD() {
 		assertEquals(
@@ -65,7 +65,7 @@ internal class ComplexDTest {
 			ComplexD(1.0, 2.0) * ComplexD(3.0, 4.0)
 		)
 	}
-	
+
 	@Test
 	fun timesConjugate() {
 		assertEquals(
@@ -73,7 +73,7 @@ internal class ComplexDTest {
 			ComplexD(2.0, 3.0) * ComplexD(2.0, 3.0).conjugate
 		)
 	}
-	
+
 	@Test
 	fun div() {
 		assertEquals(
@@ -84,24 +84,24 @@ internal class ComplexDTest {
 			ComplexD(10.0, 20.0) / ComplexD(1.0, 2.0)
 		)
 	}
-	
+
 	@Test
 	fun iSquaredIsNegativeOne() {
 		assertEquals(ComplexD(-1.0, 0.0), ComplexD(0.0, 1.0) * ComplexD(0.0, 1.0))
 	}
-	
+
 	@Test
 	fun conjugate() {
 		assertEquals(ComplexD(2.0, -3.0), ComplexD(2.0, 3.0).conjugate)
 	}
-	
+
 	@Test
 	fun absoluteValue() {
 		assertEquals(
 			sqrt(3.0 * 3.0 + 4.0 * 4.0), ComplexD(3.0, 4.0).abs
 		)
 	}
-	
+
 	@Test
 	fun sqrtOfTimesConjugateIsAbsoluteValue() {
 		assertEquals(
@@ -109,12 +109,12 @@ internal class ComplexDTest {
 			sqrt((ComplexD(2.0, 3.0) * ComplexD(2.0, 3.0).conjugate).r),
 		)
 	}
-	
+
 	@Test
 	fun angle() {
 		assertEquals(Math.toRadians(45.0), ComplexD(1.0, 1.0).angle, 0.001)
 	}
-	
+
 	@Test
 	fun rotors() {
 		assertEquals(ComplexD(0.0, 1.0), ComplexD(1.0, 0.0).rotate(90.0))

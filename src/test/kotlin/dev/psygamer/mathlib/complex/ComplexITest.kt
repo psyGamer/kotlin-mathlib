@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import kotlin.math.sqrt
 
 internal class ComplexITest {
-	
+
 	@Test
 	fun plusComplexI() {
 		assertEquals(
@@ -21,7 +21,7 @@ internal class ComplexITest {
 			ComplexI(4, 5) + ComplexI(0, 0)
 		)
 	}
-	
+
 	@Test
 	fun plusIsCommutative() {
 		assertEquals(
@@ -29,7 +29,7 @@ internal class ComplexITest {
 			ComplexI(3, 4) + ComplexI(1, 2)
 		)
 	}
-	
+
 	@Test
 	fun minusComplexI() {
 		assertEquals(
@@ -45,7 +45,7 @@ internal class ComplexITest {
 			ComplexI(4, 5) - ComplexI(0, 0)
 		)
 	}
-	
+
 	@Test
 	fun timesScalar() {
 		assertEquals(
@@ -57,7 +57,7 @@ internal class ComplexITest {
 			ComplexI(1, 2) * 0
 		)
 	}
-	
+
 	@Test
 	fun timesComplexI() {
 		assertEquals(
@@ -65,7 +65,7 @@ internal class ComplexITest {
 			ComplexI(1, 2) * ComplexI(3, 4)
 		)
 	}
-	
+
 	@Test
 	fun timesConjugate() {
 		assertEquals(
@@ -73,7 +73,7 @@ internal class ComplexITest {
 			ComplexI(2, 3) * ComplexI(2, 3).conjugate
 		)
 	}
-	
+
 	@Test
 	fun div() {
 		assertEquals(
@@ -84,24 +84,24 @@ internal class ComplexITest {
 			ComplexI(10, 20) / ComplexI(1, 2)
 		)
 	}
-	
+
 	@Test
 	fun iSquaredIsNegativeOne() {
 		assertEquals(ComplexI(-1, 0), ComplexI(0, 1) * ComplexI(0, 1))
 	}
-	
+
 	@Test
 	fun conjugate() {
 		assertEquals(ComplexI(2, -3), ComplexI(2, 3).conjugate)
 	}
-	
+
 	@Test
 	fun absoluteValue() {
 		assertEquals(
 			sqrt(3.0f * 3.0f + 4.0f * 4.0f), ComplexI(3, 4).abs
 		)
 	}
-	
+
 	@Test
 	fun sqrtOfTimesConjugateIsAbsoluteValue() {
 		assertEquals(
@@ -109,12 +109,12 @@ internal class ComplexITest {
 			sqrt((ComplexI(2, 3) * ComplexI(2, 3).conjugate).r.toFloat())
 		)
 	}
-	
+
 	@Test
 	fun angle() {
 		assertEquals(Math.toRadians(45.0).toFloat(), ComplexI(1, 1).angle, 0.001f)
 	}
-	
+
 	@Test
 	fun rotors() {
 		assertEquals(ComplexI(0, 1), ComplexI(1, 0).rotatedLeft90Degrees)
