@@ -142,6 +142,137 @@ internal class Matrix4FTest {
 	}
 
 	@Test
+	fun determinantOfTranspose() {
+		val m = Matrix4F(
+			1.0f, 2.0f, 3.0f, 4.0f,
+			3.0f, 6.0f, 3.0f, 8.0f,
+			9.0f, 11.0f, 11.0f, 15.0f,
+			13.0f, 14.0f, 15.0f, 16.0f,
+		)
+		assertEquals(m.determinant, m.transpose.determinant)
+	}
+
+	@Test
+	fun determinantWithRowOfZeros() {
+		assertEquals(
+			0.0f,
+			Matrix4F(
+				1.0f, 0.0f, 3.0f, 4.0f,
+				3.0f, 0.0f, 3.0f, 8.0f,
+				9.0f, 0.0f, 11.0f, 15.0f,
+				13.0f, 0.0f, 15.0f, 16.0f,
+			).determinant
+		)
+	}
+
+	@Test
+	fun determinantWithIdenticalRows() {
+		assertEquals(
+			0.0f,
+			Matrix4F(
+				1.0f, 1.0f, 3.0f, 4.0f,
+				3.0f, 3.0f, 3.0f, 8.0f,
+				9.0f, 9.0f, 11.0f, 15.0f,
+				13.0f, 13.0f, 15.0f, 16.0f,
+			)
+		)
+	}
+
+	@Test
+	fun changingRowsOrColumnsOfDeterminant() {
+		assertEquals(
+			Matrix4F(
+				1.0f, 2.0f, 3.0f, 4.0f,
+				3.0f, 6.0f, 3.0f, 8.0f,
+				9.0f, 11.0f, 11.0f, 15.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).determinant,
+			-Matrix4F(
+				2.0f, 1.0f, 3.0f, 4.0f,
+				6.0f, 3.0f, 3.0f, 8.0f,
+				11.0f, 9.0f, 11.0f, 15.0f,
+				14.0f, 13.0f, 15.0f, 16.0f,
+			).determinant
+		)
+
+		assertEquals(
+			Matrix4F(
+				1.0f, 2.0f, 3.0f, 4.0f,
+				3.0f, 6.0f, 3.0f, 8.0f,
+				9.0f, 11.0f, 11.0f, 15.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).determinant,
+			-Matrix4F(
+				1.0f, 2.0f, 3.0f, 4.0f,
+				9.0f, 11.0f, 11.0f, 15.0f,
+				3.0f, 6.0f, 3.0f, 8.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).determinant
+		)
+	}
+
+	@Test
+	fun multiplyingRowOrColumnOfDeterminantByScalar() {
+		assertEquals(
+			1.25f * Matrix4F(
+				1.0f, 2.0f, 3.0f, 4.0f,
+				3.0f, 6.0f, 3.0f, 8.0f,
+				9.0f, 11.0f, 11.0f, 15.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).determinant,
+			Matrix4F(
+				1.0f, 1.25f * 2.0f, 3.0f, 4.0f,
+				3.0f, 1.25f * 6.0f, 3.0f, 8.0f,
+				9.0f, 1.25f * 11.0f, 11.0f, 15.0f,
+				13.0f, 1.25f * 14.0f, 15.0f, 16.0f,
+			).determinant
+		)
+
+		assertEquals(
+			2.5f * Matrix4F(
+				1.0f, 2.0f, 3.0f, 4.0f,
+				3.0f, 6.0f, 3.0f, 8.0f,
+				9.0f, 11.0f, 11.0f, 15.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).determinant,
+			Matrix4F(
+				1.0f, 2.0f, 3.0f, 4.0f,
+				2.5f * 3.0f, 2.5f * 6.0f, 2.5f * 3.0f, 2.5f * 8.0f,
+				9.0f, 11.0f, 11.0f, 15.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).determinant
+		)
+	}
+
+	@Test
+	fun determinantOfMatrixProduct() {
+		val m1 = Matrix4F(
+			1.0f, 2.0f, 3.0f, 4.0f,
+			3.0f, 6.0f, 3.0f, 8.0f,
+			9.0f, 11.0f, 11.0f, 15.0f,
+			13.0f, 14.0f, 15.0f, 16.0f,
+		)
+		val m2 = Matrix4F(
+			1.0f, 1.0f, 2.0f, 1.0f,
+			1.0f, 2.0f, 1.0f, 1.0f,
+			2.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+		)
+		assertEquals(m1.determinant * m2.determinant, (m1 * m2).determinant)
+	}
+
+	@Test
+	fun determinantOfInverseMatrix() {
+		val m = Matrix4F(
+			1.0f, 2.0f, 3.0f, 4.0f,
+			3.0f, 6.0f, 3.0f, 8.0f,
+			9.0f, 11.0f, 11.0f, 15.0f,
+			13.0f, 14.0f, 15.0f, 16.0f,
+		)
+		assertEquals(m.inverse.determinant, 1.0f / m.determinant)
+	}
+
+	@Test
 	fun inverse() {
 		assertEquals(
 			Matrix4F(
@@ -175,7 +306,7 @@ internal class Matrix4FTest {
 	fun transposition() {
 		assertEquals(
 			Matrix4F(
-				1.0f, 5.0f,  9.0f, 13.0f,
+				1.0f, 5.0f, 9.0f, 13.0f,
 				2.0f, 6.0f, 10.0f, 14.0f,
 				3.0f, 7.0f, 11.0f, 15.0f,
 				4.0f, 8.0f, 12.0f, 16.0f,
