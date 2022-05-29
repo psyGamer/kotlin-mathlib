@@ -207,7 +207,7 @@ class Matrix4F(
 			)
 		}
 
-	val transposed: Matrix4F
+	val transpose: Matrix4F
 		get() = Matrix4F(
 			m00, m10, m20, m30,
 			m01, m11, m21, m31,

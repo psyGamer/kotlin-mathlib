@@ -170,4 +170,22 @@ internal class Matrix4FTest {
 			q * q.inverse
 		)
 	}
+
+	@Test
+	fun transposition() {
+		assertEquals(
+			Matrix4F(
+				1.0f, 5.0f,  9.0f, 13.0f,
+				2.0f, 6.0f, 10.0f, 14.0f,
+				3.0f, 7.0f, 11.0f, 15.0f,
+				4.0f, 8.0f, 12.0f, 16.0f,
+			),
+			Matrix4F(
+				01.0f, 02.0f, 03.0f, 04.0f,
+				05.0f, 06.0f, 07.0f, 08.0f,
+				09.0f, 10.0f, 11.0f, 12.0f,
+				13.0f, 14.0f, 15.0f, 16.0f,
+			).transpose
+		)
+	}
 }
